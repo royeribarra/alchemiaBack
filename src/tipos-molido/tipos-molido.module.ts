@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TiposMolidoController } from './controllers/tiposMolido.controller';
 import { TiposMolidoEntity } from './entities/tiposMolido.entity';
-import { TipoMolidoService } from '../modules/tipoMolido/tipoMolido.service';
-import { TipoMolidoController } from '../modules/tipoMolido/tipoMolido.controller';
+import { TiposMolidoService } from './services/tiposMolido.service';
 
 @Module({
   imports:[
     TypeOrmModule.forFeature([TiposMolidoEntity])
   ],
   providers:[
-    TipoMolidoService
+    TiposMolidoService
   ],
   controllers:[
-    TipoMolidoController
+    TiposMolidoController
   ]
 })
 

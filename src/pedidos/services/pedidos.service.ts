@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PedidoEntity } from '../entities/pedidos.entity';
+import { PedidosEntity } from '../entities/pedidos.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { PedidoDTO, PedidoUpdatedDTO } from '../dto/pedido.dto';
 import { ErrorManager } from '../../utils/error.manager';
@@ -8,23 +8,23 @@ import { ErrorManager } from '../../utils/error.manager';
 @Injectable()
 export class PedidosService{
   constructor(
-    @InjectRepository(PedidoEntity) private readonly pedidoRepository: Repository<PedidoEntity>
+    @InjectRepository(PedidosEntity) private readonly pedidoRepository: Repository<PedidosEntity>
   ){}
 
-  public async createPedido(body: PedidoDTO): Promise<PedidoEntity>
+  public async createPedido(body: PedidoDTO): Promise<PedidosEntity>
   {
     try {
-      const pedido : PedidoEntity = await this.pedidoRepository.save(body);
+      const pedido : PedidosEntity = await this.pedidoRepository.save(body);
       return pedido;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     } 
   }
 
-  public async findPedidos(): Promise<PedidoEntity[]>
+  public async findPedidos(): Promise<PedidosEntity[]>
   {
     try {
-      const pedidos : PedidoEntity[] = await this.pedidoRepository.find();
+      const pedidos : PedidosEntity[] = await this.pedidoRepository.find();
       if(pedidos.length === 0)
       {
         throw new ErrorManager({
@@ -38,10 +38,10 @@ export class PedidosService{
     }
   }
 
-  public async findPedidoById(id: string): Promise<PedidoEntity>
+  public async findPedidoById(id: string): Promise<PedidosEntity>
   {
     try {
-      const pedido : PedidoEntity =  await this.pedidoRepository
+      const pedido : PedidosEntity =  await this.pedidoRepository
         .createQueryBuilder('pedido')
         .where({id})
         .getOne();

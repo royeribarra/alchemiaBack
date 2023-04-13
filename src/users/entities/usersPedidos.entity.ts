@@ -13,6 +13,6 @@ export class UsersPedidosEntity extends BaseEntity{
   @ManyToOne(()=> UsersEntity, (user)=> user.projectsIncludes)
   user: UsersEntity;
 
-  @ManyToOne(()=> PedidosEntity, (pedido)=> pedido.pedidosIncludes)
+  @ManyToOne(()=> PedidosEntity, (pedido)=> pedido.usersIncludes)
   pedido: PedidosEntity;
 }

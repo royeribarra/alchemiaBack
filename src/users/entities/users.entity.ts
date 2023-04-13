@@ -3,7 +3,7 @@ import { BaseEntity } from '../../config/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { ROLES } from '../../constants/roles';
 import { UsersProjectsEntity } from './usersProjects.entity';
-import { UsersPedidosEntity } from 'src/users/entities/usersPedidos.entity';
+import { UsersPedidosEntity } from './usersPedidos.entity';
 
 @Entity({name:'users'})
 export class UsersEntity extends BaseEntity implements IUser{
