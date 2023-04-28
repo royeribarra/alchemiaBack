@@ -1,5 +1,5 @@
 export interface IPedido{
-  clienteId: number,
+  clienteId: string,
   totalProductos: number,
   total: number,
   costoDelivery: number,

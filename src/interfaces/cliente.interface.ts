@@ -1,9 +1,9 @@
 export interface ICliente{
-    firstName: string,
-    lastName: string,
-    age: number,
+    nombre: string,
+    apellido: string,
     email: string,
-    username: string,
-    password: string,
-    role: string
+    direccion: string,
+    referencia: string,
+    distrito: string,
+    telefono: string,
   }
