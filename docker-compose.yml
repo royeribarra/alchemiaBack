@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  mariaDb:
+    image: mariadb
+    container_name: mariaDb
+    restart: always
+    environment:
+      
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: alchemia
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306

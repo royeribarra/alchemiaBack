@@ -18,6 +18,7 @@ import { ProductosModule } from '../src/modules/productos/productos.module';
 import { HerramientasModule } from '../src/modules/herramientas/herramientas.module';
 import { MaterialesModule } from './modules/materiales/materiales.module';
 import { TiposCafeModule } from './modules/tipos-cafe/tiposCafe.module';
+import { PayUModule } from './modules/payu/payU.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { TiposCafeModule } from './modules/tipos-cafe/tiposCafe.module';
     ClientesModule, 
     ProductosModule, 
     HerramientasModule,
-    MaterialesModule
+    MaterialesModule,
+    PayUModule
   ],
   controllers: [AppController],
   providers: [AppService],
