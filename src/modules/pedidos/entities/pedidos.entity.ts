@@ -8,7 +8,7 @@ import { UsersPedidosEntity } from '../../users/entities/usersPedidos.entity';
 export class PedidosEntity extends BaseEntity implements IPedido{
 
   @Column()
-  clienteId: string;
+  clienteId: number;
 
   @Column({type: 'decimal', precision: 10, default: 0.00})
   totalProductos: number;

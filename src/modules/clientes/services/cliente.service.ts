@@ -93,4 +93,20 @@ export class ClientesService{
       throw ErrorManager.createSignatureError(error.message);
     }
   }
+
+  public async findLastCliente(): Promise<number>
+  {
+    try {
+      const queryBuilder = this.clienteRespository.createQueryBuilder('clientes');
+      const result = await queryBuilder
+        .select('clientes.id', 'id')
+        .orderBy('clientes.id', 'DESC')
+        .limit(1)
+        .getRawOne();
+      const ultimoRegistroId = result.id;
+      return ultimoRegistroId;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { PedidosEntity } from '../entities/pedidos.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { PedidoDTO, PedidoUpdatedDTO } from '../dto/pedido.dto';
 import { ErrorManager } from '../../../utils/error.manager';
+import { ICliente } from 'src/interfaces/cliente.interface';
 
 @Injectable()
 export class PedidosService{
@@ -11,10 +12,10 @@ export class PedidosService{
     @InjectRepository(PedidosEntity) private readonly pedidoRepository: Repository<PedidosEntity>
   ){}
 
-  public async createPedido(body): Promise<PedidosEntity>
+  public async createPedido(pedidoBody : PedidoDTO): Promise<PedidosEntity>
   {
     try {
-      const pedido : PedidosEntity = await this.pedidoRepository.save(body);
+      const pedido : PedidosEntity = await this.pedidoRepository.save(pedidoBody);
       return pedido;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);

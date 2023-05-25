@@ -4,10 +4,10 @@ import { IPayU } from '../../../interfaces/payU.interface';
 
 
 @Entity({name:'pedidos'})
-export class PayUEntity extends BaseEntity implements IPayU{
+export class PayUEntity extends BaseEntity{
 
   @Column()
-  clienteId: string;
+  cliente: string;
 
   @Column({type: 'decimal', precision: 10, default: 0.00})
   totalProductos: number;

@@ -1,11 +1,16 @@
+import { ICliente } from "./cliente.interface"
+import { IPedido } from "./pedido.interface"
+
 export interface IPayU{
-    clienteId: string,
-    totalProductos: number,
-    total: number,
-    costoDelivery: number,
-    observacion: string,
-    fechaPago: string,
-    fechaEntrega: string,
-    fechaPedido: string,
-    isActive: boolean
-  }
+  datosTarjeta: IPayUTarjeta,
+  cliente: ICliente,
+  pedido: IPedido
+}
+
+export interface IPayUTarjeta{
+  numeroTarjeta: string,
+  fechaVencimiento: string,
+  cvv: string,
+  nombreTarjeta: string,
+  tipoBanco: string
+}

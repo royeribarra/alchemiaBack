@@ -1,11 +1,14 @@
+import { ICliente } from "./cliente.interface"
+
 export interface IPedido{
-  clienteId: string,
+  clienteId: number,
+  cliente?: ICliente,
   totalProductos: number,
   total: number,
   costoDelivery: number,
   observacion: string,
-  fechaPago: string,
+  fechaPago?: string,
   fechaEntrega: string,
-  fechaPedido: string,
-  isActive: boolean
+  fechaPedido?: string,
+  isActive?: boolean
 }

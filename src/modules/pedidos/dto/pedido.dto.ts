@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-val
 export class PedidoDTO{
   @IsNotEmpty()
   @IsString()
-  clienteId: string;
+  clienteId: number;
 
   @IsNotEmpty()
   @IsNumber()
@@ -20,26 +20,15 @@ export class PedidoDTO{
   @IsNumber()
   observacion: string;
 
-  @IsNumber()
-  fechaPago: string;
-
   @IsNotEmpty()
   @IsNumber()
   fechaEntrega: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  fechaPedido: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class PedidoUpdatedDTO{
   @IsOptional()
   @IsString()
-  clienteId: string;
+  clienteId: number;
 
   @IsOptional()
   @IsNumber()

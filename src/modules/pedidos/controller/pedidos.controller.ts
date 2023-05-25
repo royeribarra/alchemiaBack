@@ -5,6 +5,8 @@ import { Delete } from '@nestjs/common/decorators';
 import { ClientesService } from '../../clientes/services/cliente.service';
 import { ClienteDTO } from '../../clientes/dto/cliente.dto';
 import { Response } from 'express';
+import { IPedido } from 'src/interfaces/pedido.interface';
+import { ICliente } from 'src/interfaces/cliente.interface';
 
 @Controller('pedidos')
 export class PedidosController {
@@ -14,21 +16,28 @@ export class PedidosController {
   ) {}
 
   @Post('register')
-  public async registerPedido(@Body() body, @Res() res: Response){
+  public async registerPedido(@Body() body : IPedido, @Res() res: Response){
     try {
-      const cliente = await this.clienteService.createCliente(body.cliente);
-      body.pedido.clienteId = cliente.id;
-      const pedido = await this.pedidoService.createPedido(body.pedido);
+      const bodyCliente : ICliente = body.cliente;
+      const bodyPedido : IPedido = body;
+
+      const cliente = await this.clienteService.createCliente(bodyCliente);
+
+      bodyPedido.clienteId = cliente.id;
+
+      const pedido = await this.pedidoService.createPedido(bodyPedido);
+
       const response = {
         status: 200,
         message: 'Pedido creado exitosamente',
-        data: pedido
+        data: body
       };
       res.json(response);
+
     } catch (error) {
       const response = {
-        status: 400,
-        message: 'No se pudo crear el usuario',
+        status: 500,
+        message: 'No se pudo crear el pedido',
         error: error.message
       };
       res.status(400).json(response);

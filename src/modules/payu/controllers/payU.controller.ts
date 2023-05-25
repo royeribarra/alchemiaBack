@@ -4,12 +4,42 @@ import { PayUDTO, PayUUpdatedDTO } from '../dto/payU.dto';
 import { Delete } from '@nestjs/common/decorators';
 import { Response } from 'express';
 import axios from 'axios';
+import { bodyPayu, getBodyPago } from '../json/variablesPayu';
+import { IPayU, IPayUTarjeta } from 'src/interfaces/payU.interface';
+import { ICliente } from 'src/interfaces/cliente.interface';
+import { ClientesService } from '../../clientes/services/cliente.service';
+import { IPedido } from 'src/interfaces/pedido.interface';
 
-@Controller('pay-u')
+@Controller('payu')
 export class PayUController {
   constructor(
-    private readonly pedidoService: PayUService
+   private readonly pedidoService: PayUService,
+   private readonly clienteService: ClientesService,
   ) {}
+
+  @Post('realizar-pago')
+  public async realizarPago(@Body() body : IPayU, @Res() res: Response){
+
+      const lastClienteId = await this.clienteService.findLastCliente();
+
+      const datosTarjeta : IPayUTarjeta = body.datosTarjeta;
+      const cliente : ICliente = body.cliente;
+      const pedido : IPedido = body.pedido;
+
+      const bodyPayu = getBodyPago(datosTarjeta, cliente, lastClienteId, pedido);
+      // Parsear el contenido JSON a un objeto
+
+      // Actualizar los datos necesarios en el objeto
+      // data.name = body.name;
+      // data.age = body.age;
+    try {
+      res.status(200).json(bodyPayu);
+    } catch (error) {
+      
+    }
+    
+    //return pedido;
+  }
 
   @Post('register')
   public async registerPedido(@Body() body, @Res() res: Response){
