@@ -19,6 +19,7 @@ import { HerramientasModule } from '../src/modules/herramientas/herramientas.mod
 import { MaterialesModule } from './modules/materiales/materiales.module';
 import { TiposCafeModule } from './modules/tipos-cafe/tiposCafe.module';
 import { PayUModule } from './modules/payu/payU.module';
+import { DistritosModule } from './modules/distritos/distritos.module';
 
 @Module({
   imports: [
@@ -39,7 +40,8 @@ import { PayUModule } from './modules/payu/payU.module';
     ProductosModule, 
     HerramientasModule,
     MaterialesModule,
-    PayUModule
+    PayUModule,
+    DistritosModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,5 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { ICliente } from 'src/interfaces/cliente.interface';
 
 export class PedidoDTO{
   @IsNotEmpty()

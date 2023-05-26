@@ -30,7 +30,7 @@ export class PedidosController {
       const response = {
         status: 200,
         message: 'Pedido creado exitosamente',
-        data: body
+        data: pedido
       };
       res.json(response);
 

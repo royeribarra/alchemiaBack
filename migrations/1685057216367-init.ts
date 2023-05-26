@@ -1,0 +1,124 @@
+import { MigrationInterface, QueryRunner } from "typeorm";
+
+export class init1685057216367 implements MigrationInterface {
+    name = 'init1685057216367'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE \`detallesPedido\` (\`id\` int NOT NULL AUTO_INCREMENT, \`created_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`pedido_id\` int NOT NULL, \`producto_id\` int NOT NULL, \`nombre_producto\` varchar(255) NOT NULL, \`tipo_producto\` int NOT NULL, \`cantidad\` int NOT NULL, \`precio_unitario\` int NOT NULL, \`total\` int NOT NULL, \`is_active\` tinyint NOT NULL, \`role\` enum ('BASIC', 'ADMIN') NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`clientes\` (\`id\` int NOT NULL AUTO_INCREMENT, \`created_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`nombre\` varchar(255) NOT NULL, \`apellido\` varchar(255) NOT NULL, \`email\` varchar(255) NOT NULL, \`direccion\` varchar(255) NOT NULL, \`referencia\` varchar(255) NOT NULL, \`distrito\` varchar(255) NOT NULL, \`telefono\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`materiales\` (\`id\` int NOT NULL AUTO_INCREMENT, \`created_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`nombre\` varchar(255) NOT NULL, \`descripcion\` varchar(255) NOT NULL, \`precio\` int NOT NULL, \`imagen\` varchar(255) NOT NULL, \`variedad\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`tipos_cafe\` (\`id\` int NOT NULL AUTO_INCREMENT, \`created_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`nombre\` varchar(255) NOT NULL, \`descripcion\` varchar(255) NOT NULL, \`imagen\` varchar(255) NOT NULL, \`is_active\` tinyint NOT NULL DEFAULT 1, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`herramientas\` (\`id\` int NOT NULL AUTO_INCREMENT, \`created_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`nombre\` varchar(255) NOT NULL, \`descripcion\` varchar(255) NOT NULL, \`precio\` int NOT NULL, \`imagen\` varchar(255) NOT NULL, \`stock\` int NOT NULL, \`is_active\` tinyint NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`cliente_id\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`cliente_id\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`cliente\` varchar(255) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP FOREIGN KEY \`FK_edd342eacec5941c651b4493c21\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`total_productos\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`total_productos\` decimal(10) NOT NULL DEFAULT '0'`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`costo_delivery\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`costo_delivery\` decimal(10) NOT NULL DEFAULT '0'`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`total\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`total\` decimal(10) NOT NULL DEFAULT '0'`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` CHANGE \`is_active\` \`is_active\` tinyint NOT NULL DEFAULT '1'`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP FOREIGN KEY \`FK_29705a1a546881c3617733901e5\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`user_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`user_id\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`pedido_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`pedido_id\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP FOREIGN KEY \`FK_0f280c70a3a6ab7f4cf3c658c4c\``);
+        await queryRunner.query(`ALTER TABLE \`users\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`users\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP FOREIGN KEY \`FK_741210c246defe00ed877a98f2a\``);
+        await queryRunner.query(`ALTER TABLE \`projects\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`projects\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`projects\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`user_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`user_id\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`project_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`project_id\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` CHANGE \`is_active\` \`is_active\` tinyint NOT NULL DEFAULT '1'`);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` ADD \`id\` int NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD CONSTRAINT \`FK_29705a1a546881c3617733901e5\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD CONSTRAINT \`FK_edd342eacec5941c651b4493c21\` FOREIGN KEY (\`pedido_id\`) REFERENCES \`pedidos\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD CONSTRAINT \`FK_0f280c70a3a6ab7f4cf3c658c4c\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD CONSTRAINT \`FK_741210c246defe00ed877a98f2a\` FOREIGN KEY (\`project_id\`) REFERENCES \`projects\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP FOREIGN KEY \`FK_741210c246defe00ed877a98f2a\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP FOREIGN KEY \`FK_0f280c70a3a6ab7f4cf3c658c4c\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP FOREIGN KEY \`FK_edd342eacec5941c651b4493c21\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP FOREIGN KEY \`FK_29705a1a546881c3617733901e5\``);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`tiposTueste\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` CHANGE \`is_active\` \`is_active\` tinyint NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`project_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`project_id\` varchar(36) NULL DEFAULT 'NULL'`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`user_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`user_id\` varchar(36) NULL DEFAULT 'NULL'`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`projects\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`projects\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`projects\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD CONSTRAINT \`FK_741210c246defe00ed877a98f2a\` FOREIGN KEY (\`project_id\`) REFERENCES \`projects\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`users\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`users\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`users_projects\` ADD CONSTRAINT \`FK_0f280c70a3a6ab7f4cf3c658c4c\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`pedido_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`pedido_id\` varchar(36) NULL DEFAULT 'NULL'`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`user_id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`user_id\` varchar(36) NULL DEFAULT 'NULL'`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD CONSTRAINT \`FK_29705a1a546881c3617733901e5\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` CHANGE \`is_active\` \`is_active\` tinyint NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`total\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`total\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`costo_delivery\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`costo_delivery\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`total_productos\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`total_productos\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`users_pedidos\` ADD CONSTRAINT \`FK_edd342eacec5941c651b4493c21\` FOREIGN KEY (\`pedido_id\`) REFERENCES \`pedidos\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`tiposVariedad\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` ADD \`id\` varchar(36) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`tiposMolido\` ADD PRIMARY KEY (\`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`cliente\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` DROP COLUMN \`cliente_id\``);
+        await queryRunner.query(`ALTER TABLE \`pedidos\` ADD \`cliente_id\` int NOT NULL`);
+        await queryRunner.query(`DROP TABLE \`herramientas\``);
+        await queryRunner.query(`DROP TABLE \`tipos_cafe\``);
+        await queryRunner.query(`DROP TABLE \`materiales\``);
+        await queryRunner.query(`DROP TABLE \`clientes\``);
+        await queryRunner.query(`DROP TABLE \`detallesPedido\``);
+    }
+
+}

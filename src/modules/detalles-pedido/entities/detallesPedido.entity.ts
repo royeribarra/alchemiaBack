@@ -3,7 +3,7 @@ import { Column, Entity } from 'typeorm';
 import { ROLES } from '../../../constants/roles';
 import { IDetallePedido } from '../../../interfaces/detallePedido.interface';
 
-@Entity({name:'detalles-pedido'})
+@Entity({name:'detallesPedido'})
 export class DetallesPedidoEntity extends BaseEntity implements IDetallePedido{
 
   @Column()

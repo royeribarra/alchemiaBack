@@ -1,7 +1,8 @@
 import { BaseEntity } from '../../../config/base.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { IPedido } from '../../../interfaces/pedido.interface';
 import { UsersPedidosEntity } from '../../users/entities/usersPedidos.entity';
+import { ClientesEntity } from 'src/modules/clientes/entities/clientes.entity';
 
 
 @Entity({name:'pedidos'})
@@ -22,13 +23,13 @@ export class PedidosEntity extends BaseEntity implements IPedido{
   @Column()
   observacion: string;
   
-  @Column()
+  @Column({ nullable: true })
   fechaPago: string;
   
   @Column()
   fechaEntrega: string;
   
-  @Column()
+  @Column({ nullable: true })
   fechaPedido: string;
   
   @Column({default: 1})
@@ -36,4 +37,8 @@ export class PedidosEntity extends BaseEntity implements IPedido{
 
   @OneToMany(()=> UsersPedidosEntity, (usersPedido)=> usersPedido.pedido)
   usersIncludes: UsersPedidosEntity[];
+
+  @OneToOne(() => ClientesEntity, (cliente) => cliente.pedido)
+  @JoinColumn()
+  cliente: ClientesEntity
 }
