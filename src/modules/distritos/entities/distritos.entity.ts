@@ -8,9 +8,12 @@ export class DistritosEntity extends BaseEntity implements IDistrito{
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   codigo: string;
 
   @Column()
   tarifa: number;
+
+  @Column({default: 1})
+  isActive: boolean;
 }

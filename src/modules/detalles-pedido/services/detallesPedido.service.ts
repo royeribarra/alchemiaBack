@@ -4,6 +4,8 @@ import { DetallesPedidoEntity } from '../entities/detallesPedido.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { DetallePedidoDTO, DetallePedidoUpdatedDTO } from '../dto/detallePedido.dto';
 import { ErrorManager } from '../../../utils/error.manager';
+import { HerramientaDTO } from 'src/modules/herramientas/dto/herramienta.dto';
+import { MaterialDTO } from 'src/modules/materiales/dto/material.dto';
 
 @Injectable()
 export class DetallesPedidoService{
@@ -11,11 +13,33 @@ export class DetallesPedidoService{
     @InjectRepository(DetallesPedidoEntity) private readonly detallePedidoRepository: Repository<DetallesPedidoEntity>
   ){}
 
-  public async createPedido(body: DetallePedidoDTO): Promise<DetallesPedidoEntity>
+  public async createDetallePedidoHerramientas(body: DetallePedidoDTO[]): Promise<any>
   {
     try {
-      const pedido : DetallesPedidoEntity = await this.detallePedidoRepository.save(body);
-      return pedido;
+      //const detallePedido : DetallesPedidoEntity = await this.detallePedidoRepository.save(body);
+      
+      const promesas = body.map(async (dato) => {
+        // Crea un registro utilizando el repositorio y retorna el resultado
+        return this.detallePedidoRepository.save(dato);
+      });
+  
+      // Espera a que se completen todas las promesas
+      return Promise.all(promesas);
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    } 
+  }
+
+  public async createDetallePedidoMateriales(body: DetallePedidoDTO[]): Promise<any>
+  {
+    try {
+      const promesas = body.map(async (dato) => {
+        // Crea un registro utilizando el repositorio y retorna el resultado
+        return this.detallePedidoRepository.save(dato);
+      });
+  
+      // Espera a que se completen todas las promesas
+      return Promise.all(promesas);
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     } 

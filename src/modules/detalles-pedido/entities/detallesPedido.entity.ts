@@ -3,7 +3,7 @@ import { Column, Entity } from 'typeorm';
 import { ROLES } from '../../../constants/roles';
 import { IDetallePedido } from '../../../interfaces/detallePedido.interface';
 
-@Entity({name:'detallesPedido'})
+@Entity({name:'detallespedido'})
 export class DetallesPedidoEntity extends BaseEntity implements IDetallePedido{
 
   @Column()
@@ -15,7 +15,7 @@ export class DetallesPedidoEntity extends BaseEntity implements IDetallePedido{
   @Column()
   nombreProducto: string;
 
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   tipoProducto: number;
   
   @Column()
@@ -24,12 +24,9 @@ export class DetallesPedidoEntity extends BaseEntity implements IDetallePedido{
   @Column()
   precioUnitario: number;
   
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   total: number;
   
-  @Column()
+  @Column({default: 1})
   isActive: boolean;
-
-  @Column({type: 'enum', enum: ROLES})
-  role: ROLES;
 }

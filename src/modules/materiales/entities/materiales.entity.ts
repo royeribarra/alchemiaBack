@@ -11,7 +11,7 @@ export class MaterialesEntity extends BaseEntity implements IMaterial{
   @Column()
   descripcion: string;
 
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   precio: number;
 
   @Column()
@@ -19,4 +19,7 @@ export class MaterialesEntity extends BaseEntity implements IMaterial{
   
   @Column()
   variedad: string;
+
+  @Column({default: 1})
+  isActive: boolean;
 }

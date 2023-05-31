@@ -20,7 +20,7 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @Column()
   tipoVariedad: number;
 
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   precioUnitario: number;
 
   @Column()

@@ -1,10 +1,22 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
 import { ICliente } from 'src/interfaces/cliente.interface';
+import { IDetallePedido } from 'src/interfaces/detallePedido.interface';
+import { IHerramienta } from 'src/interfaces/herramienta.interface';
+import { IMaterial } from 'src/interfaces/material.interface';
 
 export class PedidoDTO{
-  @IsNotEmpty()
-  @IsString()
+  @IsOptional()
+  @IsNumber()
   clienteId: number;
+
+  @IsNotEmpty()
+  cliente: ICliente;
+
+  @IsNotEmpty()
+  materiales: IDetallePedido[];
+
+  @IsNotEmpty()
+  herramientas: IDetallePedido[];
 
   @IsNotEmpty()
   @IsNumber()
@@ -15,14 +27,14 @@ export class PedidoDTO{
   costoDelivery: number;
 
   @IsNotEmpty()
-  @IsBoolean()
+  @IsNumber()
   total: number;
 
-  @IsNumber()
+  @IsString()
   observacion: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   fechaEntrega: string;
 }
 

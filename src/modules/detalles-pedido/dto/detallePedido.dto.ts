@@ -11,7 +11,7 @@ export class DetallePedidoDTO{
   productoId: number;
 
   @IsNotEmpty()
-  @IsBoolean()
+  @IsString()
   nombreProducto: string;
 
   @IsNotEmpty()
@@ -33,9 +33,6 @@ export class DetallePedidoDTO{
   @IsNotEmpty()
   @IsNumber()
   isActive: boolean;
-
-  @IsNotEmpty()
-  role: ROLES;
 }
 
 export class DetallePedidoUpdatedDTO{
@@ -70,7 +67,4 @@ export class DetallePedidoUpdatedDTO{
   @IsOptional()
   @IsBoolean()
   isActive: boolean;
-
-  @IsOptional()
-  role: ROLES;
 }

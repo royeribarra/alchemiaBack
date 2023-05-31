@@ -3,5 +3,6 @@ export interface IMaterial{
   descripcion: string,
   precio: number,
   imagen: string,
-  variedad: string
+  variedad: string,
+  isActive: boolean
 }

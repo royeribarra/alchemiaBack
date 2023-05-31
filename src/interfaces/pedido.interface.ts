@@ -1,10 +1,9 @@
-import { ICliente } from "./cliente.interface"
+import { IHerramienta } from "./herramienta.interface";
+import { IMaterial } from "./material.interface";
 
 export interface IPedido{
-  clienteId: number,
-  cliente?: ICliente,
-  herramientas?: [],
-  materiales?: [],
+  herramientas?: IHerramienta[],
+  materiales?: IMaterial[],
   totalProductos: number,
   total: number,
   costoDelivery: number,

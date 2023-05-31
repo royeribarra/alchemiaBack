@@ -1,39 +1,19 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { ICliente } from 'src/interfaces/cliente.interface';
+import { IPayU, IPayUTarjeta } from 'src/interfaces/payU.interface';
+import { IPedido } from 'src/interfaces/pedido.interface';
 
 export class PayUDTO{
   @IsNotEmpty()
-  @IsString()
-  clienteId: string;
+  cliente: ICliente;
+
+  @IsNotEmpty()
+  datosTarjeta: IPayUTarjeta;
 
   @IsNotEmpty()
   @IsNumber()
-  totalProductos: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  costoDelivery: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
   total: number;
 
-  @IsNumber()
-  observacion: string;
-
-  @IsNumber()
-  fechaPago: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  fechaEntrega: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  fechaPedido: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class PayUUpdatedDTO{

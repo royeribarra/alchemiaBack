@@ -8,8 +8,8 @@ export class DetallesPedidoController {
   constructor(private readonly detallePedidoService: DetallesPedidoService) {}
 
   @Post('register')
-  public async registerUser(@Body() body:DetallePedidoDTO){
-    return await this.detallePedidoService.createPedido(body);
+  public async registerUser(@Body() body:DetallePedidoDTO[]){
+    return await this.detallePedidoService.createDetallePedidoHerramientas(body);
   }
 
   @Get('all')

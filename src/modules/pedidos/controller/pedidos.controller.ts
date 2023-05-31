@@ -3,34 +3,49 @@ import { PedidosService } from '../services/pedidos.service';
 import { PedidoDTO, PedidoUpdatedDTO } from '../dto/pedido.dto';
 import { Delete } from '@nestjs/common/decorators';
 import { ClientesService } from '../../clientes/services/cliente.service';
-import { ClienteDTO } from '../../clientes/dto/cliente.dto';
 import { Response } from 'express';
-import { IPedido } from 'src/interfaces/pedido.interface';
-import { ICliente } from 'src/interfaces/cliente.interface';
+import { ClienteDTO } from 'src/modules/clientes/dto/cliente.dto';
+import { MaterialDTO } from 'src/modules/materiales/dto/material.dto';
+import { HerramientaDTO } from 'src/modules/herramientas/dto/herramienta.dto';
+import { DetallesPedidoService } from 'src/modules/detalles-pedido/services/detallesPedido.service';
+import { DetallePedidoDTO } from 'src/modules/detalles-pedido/dto/detallePedido.dto';
 
 @Controller('pedidos')
 export class PedidosController {
   constructor(
     private readonly pedidoService: PedidosService,
-    private readonly clienteService: ClientesService
+    private readonly clienteService: ClientesService,
+    private readonly detallePedidoService: DetallesPedidoService
   ) {}
 
   @Post('register')
-  public async registerPedido(@Body() body : IPedido, @Res() res: Response){
+  public async registerPedido(@Body() body : PedidoDTO, @Res() res: Response){
     try {
-      const bodyCliente : ICliente = body.cliente;
-      const bodyPedido : IPedido = body;
+      const bodyCliente : ClienteDTO = body.cliente;
+      const bodyPedido : PedidoDTO = body;
+      const bodyMateriales : DetallePedidoDTO[] = body.materiales;
+      const bodyHerramientas : DetallePedidoDTO[] = body.herramientas;
 
       const cliente = await this.clienteService.createCliente(bodyCliente);
 
-      bodyPedido.clienteId = cliente.id;
+      const pedido = await this.pedidoService.createPedido({...bodyPedido, clienteId: cliente.id});
 
-      const pedido = await this.pedidoService.createPedido(bodyPedido);
+      const detalleMaterial = await this.detallePedidoService.createDetallePedidoMateriales([...bodyMateriales.map((elemento) => (
+        { ...elemento, pedidoId: pedido.id, total: elemento.cantidad * elemento.precioUnitario}
+     ))]);
+      const detalleHerramienta = await this.detallePedidoService.createDetallePedidoHerramientas([...bodyHerramientas.map((elemento) => (
+        { ...elemento, pedidoId: pedido.id, total: elemento.cantidad * elemento.precioUnitario}
+     ))]);
 
       const response = {
         status: 200,
         message: 'Pedido creado exitosamente',
-        data: pedido
+        data: {
+          pedido: pedido,
+          cliente: cliente,
+          detalleMaterial: detalleMaterial,
+          detalleHerramienta: detalleHerramienta
+        }
       };
       res.json(response);
 
@@ -40,7 +55,7 @@ export class PedidosController {
         message: 'No se pudo crear el pedido',
         error: error.message
       };
-      res.status(400).json(response);
+      res.status(500).json(response);
     }
     
     //return pedido;

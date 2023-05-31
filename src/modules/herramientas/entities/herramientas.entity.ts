@@ -8,10 +8,10 @@ export class HerramientasEntity extends BaseEntity implements IHerramienta{
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   precio: number;
 
   @Column()
@@ -20,6 +20,6 @@ export class HerramientasEntity extends BaseEntity implements IHerramienta{
   @Column()
   stock: number;
 
-  @Column()
+  @Column({default: 1})
   isActive: boolean;
 }
