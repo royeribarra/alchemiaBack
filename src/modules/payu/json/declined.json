@@ -1,0 +1,34 @@
+{
+    "status": 200,
+    "isOk": false,
+    "message": "No se pudo realizar el pago",
+    "data": {
+        "payU": {
+            "code": "SUCCESS",
+            "error": null,
+            "transactionResponse": {
+                "orderId": 2149692985,
+                "transactionId": "30ffbafa-ddc4-4440-808c-8330a27d0d4e",
+                "state": "DECLINED",
+                "paymentNetworkResponseCode": "05",
+                "paymentNetworkResponseErrorMessage": "Rechazada",
+                "trazabilityCode": "10214969298530f",
+                "authorizationCode": null,
+                "pendingReason": null,
+                "responseCode": "ENTITY_DECLINED",
+                "errorCode": null,
+                "responseMessage": null,
+                "transactionDate": null,
+                "transactionTime": null,
+                "operationDate": 1685556163294,
+                "referenceQuestionnaire": null,
+                "extraParameters": {
+                    "BANK_REFERENCED_CODE": "CREDIT"
+                },
+                "additionalInfo": null
+            }
+        },
+        "clienteId": null,
+        "transaction": null
+    }
+}

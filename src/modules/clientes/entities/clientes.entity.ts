@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../config/base.entity';
-import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 import { ICliente } from '../../../interfaces/cliente.interface';
 import { PedidosEntity } from '../../pedidos/entities/pedidos.entity';
 

@@ -42,7 +42,6 @@ export class PedidosController {
         message: 'Pedido creado exitosamente',
         data: {
           pedido: pedido,
-          cliente: cliente,
           detalleMaterial: detalleMaterial,
           detalleHerramienta: detalleHerramienta
         }

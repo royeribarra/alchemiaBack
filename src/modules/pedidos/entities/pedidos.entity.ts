@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { IPedido } from '../../../interfaces/pedido.interface';
 import { UsersPedidosEntity } from '../../users/entities/usersPedidos.entity';
 import { ClientesEntity } from '../../clientes/entities/clientes.entity';
+import { PayUTransactionEntity } from '../../payu/entities/payU.entity';
 
 
 @Entity({name:'pedidos'})
@@ -38,4 +39,8 @@ export class PedidosEntity extends BaseEntity implements IPedido{
   @OneToOne(() => ClientesEntity, (cliente) => cliente.pedido)
   @JoinColumn()
   cliente: ClientesEntity
+
+  @OneToOne(() => PayUTransactionEntity, (transaction) => transaction.pedido)
+  @JoinColumn()
+  transaction: PayUTransactionEntity
 }

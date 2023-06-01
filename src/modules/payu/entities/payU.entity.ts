@@ -1,14 +1,12 @@
+import { PedidosEntity } from '../../pedidos/entities/pedidos.entity'
 import { BaseEntity } from '../../../config/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 
 @Entity({name:'payutransactions'})
 export class PayUTransactionEntity extends BaseEntity{
 
   @Column()
   tipo: number;
-
-  @Column({ nullable: true })
-  pedidoId: number;
 
   @Column()
   responseCode: string;
@@ -27,4 +25,7 @@ export class PayUTransactionEntity extends BaseEntity{
   
   @Column({ nullable: true })
   paymentNetworkResponseErrorMessage: string;
+
+  @OneToOne(() => PedidosEntity, (pedido) => pedido.transaction)
+  pedido: PedidosEntity
 }

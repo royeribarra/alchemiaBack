@@ -42,28 +42,31 @@ export class PayUController {
     try {
       const responsePayu = await axios.post(urlDesarrollo, bodyPayu, {headers : headers});
       console.log(responsePayu.data);
-      const miDTO: PayUTransactionDTO = construirPayUTransactionDTO(responsePayu.data.transactionResponse);
-      const transaction = await this.payUService.createTransaction(miDTO);
-      if(responsePayu.data.transactionResponse.responseCode === 'APPROVED'){
-        
-        const response = {
-          status: 200,
-          isOk: true,
-          message: 'Se realizó el pago con éxito pedido.',
-          data: {
-            payU: responsePayu.data,
-            clienteId: lastClienteId,
-            transaction: transaction
-          }
-        };
-        res.status(200).json(response);
-      }else if(responsePayu.data.transactionResponse.responseCode === 'PENDING_TRANSACTION_CONFIRMATION' || 
-        responsePayu.data.transactionResponse.responseCode === 'PENDING_TRANSACTION_TRANSMISSION'
+      
+      if(responsePayu.data.code === "SUCCESS"){
+        const miDTO: PayUTransactionDTO = construirPayUTransactionDTO(responsePayu.data.transactionResponse);
+        const transaction = await this.payUService.createTransaction(miDTO);
+        console.log(transaction);
+        if(responsePayu.data.transactionResponse.responseCode === 'APPROVED')
+        {
+          const response = {
+            status: 200,
+            isOk: true,
+            message: 'Se realizó el pago con éxito pedido.',
+            data: {
+              payU: responsePayu.data,
+              clienteId: lastClienteId,
+              transaction: transaction
+            }
+          };
+          res.status(200).json(response);
+        }else if(typeof  responsePayu.data.transactionResponse !== 'undefined' && (responsePayu.data.transactionResponse.responseCode === 'PENDING_TRANSACTION_CONFIRMATION' || 
+        responsePayu.data.transactionResponse.responseCode === 'PENDING_TRANSACTION_TRANSMISSION')
       ){
         const response = {
           status: 200,
           isOk: false,
-          message: 'Se realizó el pago con éxito pedido.',
+          message: 'El pago está pendiente de confirmación.',
           data: {
             payU: responsePayu.data,
             clienteId: lastClienteId,
@@ -71,22 +74,15 @@ export class PayUController {
           }
         };
         res.status(200).json(response);
+      }
       }else{
         const response = {
           status: 200,
           isOk: false,
-          message: 'Se realizó el pago con éxito pedido.',
-          data: {
-            payU: responsePayu.data,
-            clienteId: null,
-            transaction: null
-          }
+          message: responsePayu.data
         };
         res.status(200).json(response);
       }
-      
-      
-      
     } catch (error) {
       console.log(error)
       const response = {

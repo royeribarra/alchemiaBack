@@ -15,13 +15,13 @@ export class DetallesPedidoEntity extends BaseEntity implements IDetallePedido{
   @Column()
   nombreProducto: string;
 
-  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
+  @Column()
   tipoProducto: number;
   
   @Column()
   cantidad: number;
   
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   precioUnitario: number;
   
   @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})

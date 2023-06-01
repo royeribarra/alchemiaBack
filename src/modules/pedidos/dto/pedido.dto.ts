@@ -1,8 +1,6 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
 import { ICliente } from 'src/interfaces/cliente.interface';
 import { IDetallePedido } from 'src/interfaces/detallePedido.interface';
-import { IHerramienta } from 'src/interfaces/herramienta.interface';
-import { IMaterial } from 'src/interfaces/material.interface';
 
 export class PedidoDTO{
   @IsOptional()
@@ -36,6 +34,10 @@ export class PedidoDTO{
   @IsNotEmpty()
   @IsString()
   fechaEntrega: string;
+
+  @IsOptional()
+  @IsNumber()
+  transactionId: number;
 }
 
 export class PedidoUpdatedDTO{

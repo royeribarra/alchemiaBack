@@ -1,0 +1,46 @@
+{
+    "status": 200,
+    "isOk": true,
+    "message": "Se realizó el pago con éxito pedido.",
+    "data": {
+        "payU": {
+            "code": "SUCCESS",
+            "error": null,
+            "transactionResponse": {
+                "orderId": 2149693020,
+                "transactionId": "a51951f3-a743-4a49-99f2-be7191ef820a",
+                "state": "APPROVED",
+                "paymentNetworkResponseCode": "00",
+                "paymentNetworkResponseErrorMessage": null,
+                "trazabilityCode": "102149693020a51",
+                "authorizationCode": "APPROVED",
+                "pendingReason": null,
+                "responseCode": "APPROVED",
+                "errorCode": null,
+                "responseMessage": "Aprobada",
+                "transactionDate": null,
+                "transactionTime": null,
+                "operationDate": 1685556468111,
+                "referenceQuestionnaire": null,
+                "extraParameters": {
+                    "BANK_REFERENCED_CODE": "CREDIT"
+                },
+                "additionalInfo": null
+            }
+        },
+        "clienteId": 1,
+        "transaction": {
+            "tipo": 1,
+            "pedidoId": null,
+            "responseCode": "APPROVED",
+            "state": "APPROVED",
+            "orderId": 2149693020,
+            "transactionId": "a51951f3-a743-4a49-99f2-be7191ef820a",
+            "authorizationCode": "APPROVED",
+            "paymentNetworkResponseErrorMessage": "",
+            "id": 2,
+            "createdAt": "2023-05-31T23:07:48.378Z",
+            "updatedAt": "2023-05-31T23:07:48.378Z"
+        }
+    }
+}
