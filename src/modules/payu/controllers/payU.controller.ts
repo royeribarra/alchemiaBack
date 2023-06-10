@@ -7,10 +7,11 @@ import axios from 'axios';
 import { bodyPayu, construirPayUTransactionDTO, getBodyPago } from '../json/variablesPayu';
 import { IPayU, IPayUTarjeta } from 'src/interfaces/payU.interface';
 import { ICliente } from 'src/interfaces/cliente.interface';
-import { ClientesService } from '../../clientes/services/cliente.service';
-import { IPedido } from 'src/interfaces/pedido.interface';
-import { PedidoDTO } from 'src/modules/pedidos/dto/pedido.dto';
-import { ClienteDTO } from 'src/modules/clientes/dto/cliente.dto';
+import { ClientesService } from '../../ventas/clientes/services/cliente.service';
+import { ClienteDTO } from '../../ventas/clientes/dto/cliente.dto';
+import { IPedido } from '../../../interfaces/pedido.interface';
+import { PedidoDTO } from '../../ventas/pedidos/dto/pedido.dto';
+
 import { PayUTransactionDTO } from '../dto/payUTransaction.dto';
 
 @Controller('payu')

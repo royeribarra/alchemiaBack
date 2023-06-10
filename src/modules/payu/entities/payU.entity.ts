@@ -1,4 +1,4 @@
-import { PedidosEntity } from '../../pedidos/entities/pedidos.entity'
+import { PedidosEntity } from '../../ventas/pedidos/entities/pedidos.entity';
 import { BaseEntity } from '../../../config/base.entity';
 import { Column, Entity, OneToOne } from 'typeorm';
 

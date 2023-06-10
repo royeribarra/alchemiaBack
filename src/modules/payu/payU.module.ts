@@ -3,8 +3,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { PayUTransactionEntity } from './entities/payU.entity';
 import { PayUService } from './services/payU.service';
 import { PayUController } from './controllers/payU.controller';
-import { ClientesService } from "../clientes/services/cliente.service";
-import { ClientesEntity } from "../clientes/entities/clientes.entity";
+import { ClientesService } from "../ventas/clientes/services/cliente.service";
+import { ClientesEntity } from "../ventas/clientes/entities/clientes.entity";
 
 
 @Module({
