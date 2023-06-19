@@ -1,21 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { ProductoDTO, ProductoUpdateDTO } from '../dto/producto.dto';
+import { ProductoDTO, ProductoToRarezaDTO, ProductoUpdateDTO } from '../dto/producto.dto';
 import { ErrorManager } from '../../../../utils/error.manager';
 import { ProductosEntity } from '../entities/productos.entity';
+import { ProductosTiposRarezaCafeEntity } from '../entities/productosTiposRarezaCafe.entity';
 
 @Injectable()
 export class ProductosService{
   constructor(
-    @InjectRepository(ProductosEntity) private readonly productoRespository: Repository<ProductosEntity>
+    @InjectRepository(ProductosEntity) private readonly productoRespository: Repository<ProductosEntity>,
+    @InjectRepository(ProductosTiposRarezaCafeEntity) private readonly productoRarezaRespository: Repository<ProductosTiposRarezaCafeEntity>,
   ){}
 
-  public async createProducto(body: ProductoDTO): Promise<ProductosEntity>
+  public async createProducto(producto: ProductoDTO): Promise<ProductosEntity>
   {
     try {
-      const user : ProductosEntity = await this.productoRespository.save(body);
-      return user;
+      const newProducto : ProductosEntity = await this.productoRespository.save(producto);
+      return newProducto;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  public async addToRareza(body: ProductoToRarezaDTO)
+  {
+    try {
+      const newProducto = await this.productoRarezaRespository.save(body);
+      return newProducto;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
@@ -42,19 +54,36 @@ export class ProductosService{
   {
     try {
       const user : ProductosEntity =  await this.productoRespository
-        .createQueryBuilder('user')
+        .createQueryBuilder('productos')
         .where({id})
+        .leftJoinAndSelect('productos.rarezas', 'rarezas')
+        .leftJoinAndSelect('rarezas.rareza', 'rareza')
         .getOne();
 
-        if(!user)
-        {
-          throw new ErrorManager({
-            type: 'BAD_REQUEST',
-            message: `No se encontró al usuario de Id = ${id}`
-          });
-        }
+        // if(!user)
+        // {
+        //   throw new ErrorManager({
+        //     type: 'BAD_REQUEST',
+        //     message: `No se encontró al usuario de Id = ${id}`
+        //   });
+        // }
 
         return user;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  public async findProductoByRareza(rarezaId: string): Promise<ProductosEntity[]>
+  {
+    try {
+      const productos : ProductosEntity[] =  await this.productoRespository
+      .createQueryBuilder('productos')
+      .leftJoin('productos.rarezas', 'rareza')
+      .where('rarezas.id = :rarezaId', { rarezaId })
+      .getMany();
+
+      return productos;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

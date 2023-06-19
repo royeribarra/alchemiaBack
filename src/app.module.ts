@@ -10,7 +10,7 @@ import { ProjectsModule } from '../src/modules/projects/projects.module';
 import { UsersModule } from '../src/modules/mantenimiento/users/users.module';
 import { TiposMolidoModule } from '../src/modules/mantenimiento/tiposMolidoCafe/tipos-molido.module';
 import { TiposTuesteModule } from '../src/modules/mantenimiento/tiposTuesteCafe/tipos-tueste.module';
-import { TiposVariedadModule } from '../src/modules/mantenimiento/tiposRarezaCafe/tipos-variedad.module';
+import { TiposRarezaCafeModule } from './modules/mantenimiento/tiposRarezaCafe/tipos-rareza-cafe.module';
 import { PedidosModule } from '../src/modules/ventas/pedidos/pedidos.module';
 import { DetallesPedidoModule } from '../src/modules/ventas/detalles-pedido/detalles-pedido.module';
 import { ClientesModule } from '../src/modules/ventas/clientes/clientes.module';
@@ -30,7 +30,7 @@ import { DistritosModule } from './modules/mantenimiento/distritos/distritos.mod
     UsersModule, 
     TiposMolidoModule, 
     TiposTuesteModule, 
-    TiposVariedadModule,
+    TiposRarezaCafeModule,
     PedidosModule, 
     DetallesPedidoModule, 
     ClientesModule, 

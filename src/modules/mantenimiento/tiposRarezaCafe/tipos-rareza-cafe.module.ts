@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TiposRarezaCafeEntity } from './entities/tiposRarezaCafe.entity';
-import { TiposVariedadService } from './services/tiposVariedad.service';
-import { TiposVariedadController } from './controllers/tiposVariedad.controller';
+import { TiposVariedadService } from './services/tiposRarezaCafe.service';
+import { TiposVariedadController } from './controllers/tiposRarezaCafe.controller';
 
 @Module({
   imports:[
@@ -12,4 +12,4 @@ import { TiposVariedadController } from './controllers/tiposVariedad.controller'
   controllers: [TiposVariedadController]
 })
 
-export class TiposVariedadModule {}
+export class TiposRarezaCafeModule {}

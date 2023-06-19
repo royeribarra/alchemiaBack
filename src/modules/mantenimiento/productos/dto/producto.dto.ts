@@ -1,4 +1,6 @@
-import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean, IsArray, IsUUID } from 'class-validator';
+import { ProductosEntity } from '../entities/productos.entity';
+import { TiposRarezaCafeEntity } from '../../tiposRarezaCafe/entities/tiposRarezaCafe.entity';
 
 export class ProductoDTO{
   @IsNotEmpty()
@@ -6,9 +8,41 @@ export class ProductoDTO{
   nombre: string;
 
   @IsNotEmpty()
+  @IsString()
+  descripcion: string;
+
+  @IsNotEmpty()
+  @IsString()
+  empaque: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  puntaje: number;
+
+  @IsNotEmpty()
+  @IsString()
+  origen: string;
+
+  @IsNotEmpty()
+  @IsString()
+  altura: string;
+
+  @IsNotEmpty()
+  @IsString()
+  variedad: string;
+
+  @IsNotEmpty()
+  @IsString()
+  proceso: string;
+
+  @IsNotEmpty()
   @IsNumber()
   precioUnitario: number;
-
+    
+  @IsNotEmpty()
+  @IsNumber()
+  precioDescuento: number;
+  
   @IsNotEmpty()
   @IsString()
   imagen: string;
@@ -16,10 +50,6 @@ export class ProductoDTO{
   @IsNotEmpty()
   @IsNumber()
   stock: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class ProductoUpdateDTO{
@@ -58,4 +88,14 @@ export class ProductoUpdateDTO{
   @IsOptional()
   @IsBoolean()
   isActive: boolean;
+}
+
+export class ProductoToRarezaDTO{
+  @IsNotEmpty()
+  @IsNumber()
+  producto: ProductosEntity;
+
+  @IsNotEmpty()
+  @IsNumber()
+  rareza: TiposRarezaCafeEntity;
 }

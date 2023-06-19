@@ -1,9 +1,9 @@
 import { Body, Controller, Get, HttpCode, Param, Post, Put} from '@nestjs/common';
-import { TiposVariedadService } from '../services/tiposVariedad.service';
-import { TipoVariedadDTO, TipoVariedaUpdatedDTO } from '../dto/tipoVariedad.dto';
+import { TiposVariedadService } from '../services/tiposRarezaCafe.service';
+import { TipoVariedadDTO, TipoVariedaUpdatedDTO } from '../dto/tipoRarezaCafe.dto';
 import { Delete } from '@nestjs/common/decorators';
 
-@Controller('tipos-variedad')
+@Controller('tipos-rareza-cafe')
 export class TiposVariedadController {
   constructor(private readonly variedadService: TiposVariedadService) {}
 
@@ -26,6 +26,11 @@ export class TiposVariedadController {
   @Put('edit/:id')
   public async updateTipoVariedad(@Body() body: TipoVariedaUpdatedDTO, @Param('id') id:string){
     return await this.variedadService.updateTipoVariedad(body, id);
+  }
+
+  @Get('value/:value')
+  public async findTipoRarezaByValue(@Param('value') value:string){
+    return await this.variedadService.findTipoVariedadByValue(value);
   }
 
   @Delete(':id')

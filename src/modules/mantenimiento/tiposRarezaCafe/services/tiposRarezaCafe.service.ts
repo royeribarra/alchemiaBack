@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TiposRarezaCafeEntity } from '../entities/tiposRarezaCafe.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { TipoVariedadDTO, TipoVariedaUpdatedDTO } from '../dto/tipoVariedad.dto';
+import { TipoVariedadDTO, TipoVariedaUpdatedDTO } from '../dto/tipoRarezaCafe.dto';
 import { ErrorManager } from '../../../../utils/error.manager';
 
 @Injectable()
@@ -42,8 +42,10 @@ export class TiposVariedadService{
   {
     try {
       const user : TiposRarezaCafeEntity =  await this.variedadRepository
-        .createQueryBuilder('user')
+        .createQueryBuilder('tiposRarezaCafe')
         .where({id})
+        .leftJoinAndSelect('tiposRarezaCafe.productos', 'productos')
+        .leftJoinAndSelect('productos.producto', 'producto')
         .getOne();
 
         if(!user)
@@ -51,6 +53,30 @@ export class TiposVariedadService{
           throw new ErrorManager({
             type: 'BAD_REQUEST',
             message: `No se encontró al usuario de Id = ${id}`
+          });
+        }
+
+        return user;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  public async findTipoVariedadByValue(valor: string): Promise<TiposRarezaCafeEntity>
+  {
+    try {
+      const user : TiposRarezaCafeEntity =  await this.variedadRepository
+        .createQueryBuilder('tiposRarezaCafe')
+        .where({valor})
+        .leftJoinAndSelect('tiposRarezaCafe.productos', 'productos')
+        .leftJoinAndSelect('productos.producto', 'producto')
+        .getOne();
+
+        if(!user)
+        {
+          throw new ErrorManager({
+            type: 'BAD_REQUEST',
+            message: `No se encontró ningún producto de Id = ${valor}`
           });
         }
 

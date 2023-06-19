@@ -1,5 +1,4 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ROLES } from 'src/constants/roles';
 
 export class TipoVariedadDTO{
   @IsNotEmpty()
@@ -13,9 +12,6 @@ export class TipoVariedadDTO{
   @IsNotEmpty()
   @IsBoolean()
   isActive: boolean;
-
-  @IsNotEmpty()
-  role: ROLES;
 }
 
 export class TipoVariedaUpdatedDTO{
@@ -30,7 +26,4 @@ export class TipoVariedaUpdatedDTO{
   @IsOptional()
   @IsBoolean()
   isActive: boolean;
-
-  @IsOptional()
-  role: ROLES;
 }

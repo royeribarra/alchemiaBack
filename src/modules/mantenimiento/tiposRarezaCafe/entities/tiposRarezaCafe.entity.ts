@@ -1,7 +1,7 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { ITipoVariedad } from '../../../../interfaces/tipoRarezaCafe.interface';
-import { ProductosEntity } from '../../productos/entities/productos.entity';
+import { ProductosTiposRarezaCafeEntity } from '../../productos/entities/productosTiposRarezaCafe.entity';
 
 @Entity({name:'tiposRarezaCafe'})
 export class TiposRarezaCafeEntity extends BaseEntity implements ITipoVariedad{
@@ -15,6 +15,6 @@ export class TiposRarezaCafeEntity extends BaseEntity implements ITipoVariedad{
   @Column({ default: true})
   isActive: boolean;
 
-  @ManyToMany(() => ProductosEntity, producto => producto.rarezas)
-  productos: ProductosEntity[];
+  @OneToMany(() => ProductosTiposRarezaCafeEntity, producto => producto.rareza)
+  productos: ProductosTiposRarezaCafeEntity[];
 }

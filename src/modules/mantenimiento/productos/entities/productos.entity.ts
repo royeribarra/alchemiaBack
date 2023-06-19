@@ -1,7 +1,7 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { IProducto } from '../../../../interfaces/producto.interface';
-import { TiposRarezaCafeEntity } from '../../tiposRarezaCafe/entities/tiposRarezaCafe.entity';
+import { ProductosTiposRarezaCafeEntity } from './productosTiposRarezaCafe.entity';
 
 @Entity({name:'productos'})
 export class ProductosEntity extends BaseEntity implements IProducto{
@@ -36,16 +36,16 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
   precioDescuento: number;
 
-  @Column()
+  @Column({ nullable: true })
   imagen: string;
 
-  @Column()
+  @Column({ nullable: true })
   stock: number;
 
-  @Column()
+  @Column({default: 1})
   isActive: boolean;
 
-  @ManyToMany(() => TiposRarezaCafeEntity)
+  @OneToMany(() => ProductosTiposRarezaCafeEntity, rareza => rareza.producto)
   @JoinTable()
-  rarezas: TiposRarezaCafeEntity[];
+  rarezas: ProductosTiposRarezaCafeEntity[];
 }
