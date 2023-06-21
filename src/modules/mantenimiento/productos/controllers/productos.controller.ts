@@ -29,8 +29,13 @@ export class ProductosController {
   }
 
   @Get('rareza/:rarezaId')
-  public async findProductoByRareza(@Param('rarezaId') rarezaId: string){
-    return await this.productosService.findProductoByRareza(rarezaId);
+  public async findProductoByRarezaId(@Param('rarezaId') rarezaId: string){
+    return await this.productosService.findProductoByRarezaId(rarezaId);
+  }
+
+  @Get('rarezaValue/:rarezaValue')
+  public async findProductoByRarezaValue(@Param('rarezaValue') rarezaValue: string){
+    return await this.productosService.findProductoByRarezaValue(rarezaValue);
   }
 
   @Put('edit/:id')

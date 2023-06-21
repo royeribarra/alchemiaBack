@@ -74,13 +74,30 @@ export class ProductosService{
     }
   }
 
-  public async findProductoByRareza(rarezaId: string): Promise<ProductosEntity[]>
+  public async findProductoByRarezaId(rarezaId: string): Promise<ProductosEntity[]>
   {
     try {
       const productos : ProductosEntity[] =  await this.productoRespository
       .createQueryBuilder('productos')
-      .leftJoin('productos.rarezas', 'rareza')
+      .leftJoin('productos.rarezas', 'tiposrarezacafe')
+      .innerJoin('tiposrarezacafe.rareza', 'rarezas')
       .where('rarezas.id = :rarezaId', { rarezaId })
+      .getMany();
+
+      return productos;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  public async findProductoByRarezaValue(rarezaValue: string): Promise<ProductosEntity[]>
+  {
+    try {
+      const productos : ProductosEntity[] =  await this.productoRespository
+      .createQueryBuilder('productos')
+      .innerJoin('productos.rarezas', 'tiposrarezacafe')
+      .innerJoin('tiposrarezacafe.rareza', 'rarezas')
+      .where('rarezas.valor = :rarezaValue', { rarezaValue })
       .getMany();
 
       return productos;
