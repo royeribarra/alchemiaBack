@@ -18,6 +18,11 @@ import { ProductosModule } from '../src/modules/mantenimiento/productos/producto
 import { HerramientasModule } from '../src/modules/mantenimiento/herramientas/herramientas.module';
 import { PayUModule } from './modules/payu/payU.module';
 import { DistritosModule } from './modules/mantenimiento/distritos/distritos.module';
+import { TiposAcidesCafeModule } from './modules/mantenimiento/tiposAcidesCafe/tiposAcidesCafe.module';
+import { TiposAromaCafeModule } from './modules/mantenimiento/tiposAromaCafe/tiposAromaCafe.module';
+import { TiposCuerpoCafeModule } from './modules/mantenimiento/tiposCuerpoCafe/tiposCuerpoCafe.module';
+import { TiposNotaCafeModule } from './modules/mantenimiento/tiposNotaCafe/tiposNotaCafe.module';
+import { TiposPostGustoCafeoModule } from './modules/mantenimiento/tiposPostGustoCafe/tiposPostGustoCafe.module';
 
 @Module({
   imports: [
@@ -37,7 +42,12 @@ import { DistritosModule } from './modules/mantenimiento/distritos/distritos.mod
     ProductosModule, 
     HerramientasModule,
     PayUModule,
-    DistritosModule
+    DistritosModule,
+    TiposAcidesCafeModule,
+    TiposAromaCafeModule,
+    TiposCuerpoCafeModule,
+    TiposNotaCafeModule,
+    TiposPostGustoCafeoModule
   ],
   controllers: [AppController],
   providers: [AppService],

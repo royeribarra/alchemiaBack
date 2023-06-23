@@ -1,6 +1,6 @@
 import { IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
 
-export class TipoMolidoDTO{
+export class TipoAcidesCafeDTO{
   @IsNotEmpty()
   @IsString()
   nombre: string;
@@ -14,7 +14,7 @@ export class TipoMolidoDTO{
   isActive: boolean;
 }
 
-export class TipoMolidoUpdatedDTO{
+export class TipoAcidesCafeUpdatedDTO{
   @IsOptional()
   @IsString()
   nombre: string;

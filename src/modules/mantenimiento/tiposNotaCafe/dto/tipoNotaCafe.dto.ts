@@ -1,20 +1,24 @@
-import { IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
 
-export class TipoMolidoDTO{
+export class TipoNotaCafeDTO{
   @IsNotEmpty()
   @IsString()
   nombre: string;
 
   @IsNotEmpty()
   @IsString()
-  descripcion: string;
+  descricpion: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  valor: number;
 
   @IsNotEmpty()
   @IsBoolean()
   isActive: boolean;
 }
 
-export class TipoMolidoUpdatedDTO{
+export class TipoNotaCafeUpdatedDTO{
   @IsOptional()
   @IsString()
   nombre: string;
@@ -22,6 +26,10 @@ export class TipoMolidoUpdatedDTO{
   @IsOptional()
   @IsString()
   descripcion: string;
+
+  @IsOptional()
+  @IsNumber()
+  valor: number;
 
   @IsOptional()
   @IsBoolean()
