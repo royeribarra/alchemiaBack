@@ -9,10 +9,10 @@ export class TiposPostGustoCafeEntity extends BaseEntity implements ITipoPostGus
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
-  @Column()
+  @Column({ nullable: true })
   valor: number;
 
   @Column({ default: true})

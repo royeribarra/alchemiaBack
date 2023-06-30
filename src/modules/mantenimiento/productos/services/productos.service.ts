@@ -58,6 +58,21 @@ export class ProductosService{
         .where({id})
         .leftJoinAndSelect('productos.rarezas', 'rarezas')
         .leftJoinAndSelect('rarezas.rareza', 'rareza')
+
+        .leftJoinAndSelect('productos.acideces', 'acideces')
+        .leftJoinAndSelect('acideces.acidez', 'acidez')
+
+        .leftJoinAndSelect('productos.aromas', 'aromas')
+        .leftJoinAndSelect('aromas.aroma', 'aroma')
+
+        .leftJoinAndSelect('productos.cuerpos', 'cuerpos')
+        .leftJoinAndSelect('cuerpos.cuerpo', 'cuerpo')
+
+        .leftJoinAndSelect('productos.notas', 'notas')
+        .leftJoinAndSelect('notas.nota', 'nota')
+
+        .leftJoinAndSelect('productos.gustos', 'gustos')
+        .leftJoinAndSelect('gustos.gusto', 'gusto')
         .getOne();
 
         // if(!user)

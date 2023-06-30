@@ -9,10 +9,10 @@ export class TiposNotaCafeEntity extends BaseEntity implements ITipoNota
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
-  @Column()
+  @Column({ nullable: true })
   valor: number;
 
   @Column({ default: true})

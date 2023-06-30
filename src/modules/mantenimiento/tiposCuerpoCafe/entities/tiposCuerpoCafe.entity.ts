@@ -9,10 +9,10 @@ export class TiposCuerpoCafeEntity extends BaseEntity implements ITipoCuerpo
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
-  @Column()
+  @Column({ nullable: true })
   valor: number;
 
   @Column({ default: true})

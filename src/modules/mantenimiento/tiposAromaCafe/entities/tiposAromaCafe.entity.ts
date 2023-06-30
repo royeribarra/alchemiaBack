@@ -9,7 +9,7 @@ export class TiposAromaCafeEntity extends BaseEntity implements ITipoAroma
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
   @Column({ nullable: true })

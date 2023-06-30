@@ -9,7 +9,7 @@ export class TiposAcidesCafeEntity extends BaseEntity implements ITipoAcides
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({ nullable: true })
   descripcion: string;
 
   @Column({ nullable: true })
