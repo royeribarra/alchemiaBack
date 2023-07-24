@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import { TipoAcidesCafeDTO } from '../../modules/mantenimiento/tiposAcidesCafe/dto/tipoAcidesCafe.dto';
 import { TiposAcidesCafeEntity } from 'src/modules/mantenimiento/tiposAcidesCafe/entities/tiposAcidesCafe.entity';
 
-export default class TipoNotaCafeSeeder implements Seeder {
+export default class TipoAcidesCafeSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager

@@ -2,15 +2,17 @@ import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { TipoAromaCafeDTO } from 'src/modules/mantenimiento/tiposAromaCafe/dto/tipoAromaCafe.dto';
 import { TiposAromaCafeEntity } from 'src/modules/mantenimiento/tiposAromaCafe/entities/tiposAromaCafe.entity';
+import { TipoCuerpoCafeDTO } from 'src/modules/mantenimiento/tiposCuerpoCafe/dto/tipoCuerpoCafe.dto';
+import { TiposCuerpoCafeEntity } from 'src/modules/mantenimiento/tiposCuerpoCafe/entities/tiposCuerpoCafe.entity';
 
-export default class TipoAromaCafeSeeder implements Seeder {
+export default class TipoCuerpoCafeSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager
   ): Promise<any> {
     try {
-      const distritoRepository =  dataSource.getRepository(TiposAromaCafeEntity);
-      const data : TipoAromaCafeDTO []= [
+      const distritoRepository =  dataSource.getRepository(TiposCuerpoCafeEntity);
+      const data : TipoCuerpoCafeDTO []= [
         {
           nombre: 'Frutal',
           descripcion: 'sutil',

@@ -12,10 +12,6 @@ export class TipoCuerpoCafeDTO{
   @IsNotEmpty()
   @IsNumber()
   valor: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class TipoCuerpoCafeUpdatedDTO{

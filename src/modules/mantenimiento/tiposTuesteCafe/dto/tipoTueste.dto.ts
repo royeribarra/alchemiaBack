@@ -4,18 +4,11 @@ import { ROLES } from 'src/constants/roles';
 export class TipoTuesteDTO{
   @IsNotEmpty()
   @IsString()
-  name: string;
+  nombre: string;
 
   @IsNotEmpty()
   @IsNumber()
-  value: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
-
-  @IsNotEmpty()
-  role: ROLES;
+  valor: number;
 }
 
 export class TipoTuesteUpdatedDTO{
