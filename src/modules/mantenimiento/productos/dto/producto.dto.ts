@@ -5,6 +5,10 @@ import { TiposRarezaCafeEntity } from '../../tiposRarezaCafe/entities/tiposRarez
 export class ProductoDTO{
   @IsNotEmpty()
   @IsString()
+  tipoProducto: string;
+
+  @IsNotEmpty()
+  @IsString()
   nombre: string;
 
   @IsNotEmpty()
@@ -19,7 +23,7 @@ export class ProductoDTO{
   @IsNumber()
   puntaje: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   origen: string;
 
@@ -58,8 +62,8 @@ export class ProductoUpdateDTO{
   name: string;
 
   @IsOptional()
-  @IsNumber()
-  tipoProducto: number;
+  @IsString()
+  tipoProducto: string;
 
   @IsOptional()
   @IsNumber()
@@ -84,10 +88,6 @@ export class ProductoUpdateDTO{
   @IsOptional()
   @IsNumber()
   stock: number;
-
-  @IsOptional()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class ProductoToRarezaDTO{

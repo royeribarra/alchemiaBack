@@ -10,6 +10,8 @@ import { ProductosTiposPostGustoCafeEntity } from './productosTiposPostGustoCafe
 
 @Entity({name:'productos'})
 export class ProductosEntity extends BaseEntity implements IProducto{
+  @Column()
+  tipoProducto: string;
 
   @Column()
   nombre: string;
@@ -23,7 +25,7 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @Column()
   puntaje: number;
 
-  @Column()
+  @Column({ nullable: true})
   origen: string;
 
   @Column()

@@ -7,7 +7,7 @@ import { Delete } from '@nestjs/common/decorators';
 export class ProductosController {
   constructor(private readonly productosService: ProductosService) {}
 
-  @Post('register')
+  @Post('create')
   public async registerProducto(@Body() producto:ProductoDTO){
     return await this.productosService.createProducto(producto);
   }

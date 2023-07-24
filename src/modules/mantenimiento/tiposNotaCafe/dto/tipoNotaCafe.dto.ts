@@ -12,10 +12,6 @@ export class TipoNotaCafeDTO{
   @IsNotEmpty()
   @IsNumber()
   valor: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class TipoNotaCafeUpdatedDTO{
@@ -30,8 +26,4 @@ export class TipoNotaCafeUpdatedDTO{
   @IsOptional()
   @IsNumber()
   valor: number;
-
-  @IsOptional()
-  @IsBoolean()
-  isActive: boolean;
 }
