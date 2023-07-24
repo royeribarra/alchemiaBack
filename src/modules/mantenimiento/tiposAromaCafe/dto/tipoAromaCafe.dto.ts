@@ -1,4 +1,4 @@
-import { IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsString, IsBoolean, IsNumber } from 'class-validator';
 
 export class TipoAromaCafeDTO{
   @IsNotEmpty()
@@ -10,8 +10,8 @@ export class TipoAromaCafeDTO{
   descripcion: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
+  @IsNumber()
+  valor: number;
 }
 
 export class TipoAromaCafeUpdatedDTO{

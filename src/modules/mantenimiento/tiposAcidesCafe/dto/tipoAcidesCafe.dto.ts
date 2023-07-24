@@ -1,4 +1,4 @@
-import { IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, IsNotEmpty, IsString, IsBoolean, IsNumber } from 'class-validator';
 
 export class TipoAcidesCafeDTO{
   @IsNotEmpty()
@@ -10,8 +10,8 @@ export class TipoAcidesCafeDTO{
   descripcion: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
+  @IsNumber()
+  valor: number;
 }
 
 export class TipoAcidesCafeUpdatedDTO{
@@ -22,8 +22,4 @@ export class TipoAcidesCafeUpdatedDTO{
   @IsOptional()
   @IsString()
   descripcion: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isActive: boolean;
 }
