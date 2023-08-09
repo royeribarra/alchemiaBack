@@ -1,5 +1,5 @@
 export interface IProducto{
-  tipoProducto: string,
+  tipoProducto: number,
   nombre: string,
   descripcion: string,
   empaque: string,

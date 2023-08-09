@@ -4,8 +4,8 @@ import { TiposRarezaCafeEntity } from '../../tiposRarezaCafe/entities/tiposRarez
 
 export class ProductoDTO{
   @IsNotEmpty()
-  @IsString()
-  tipoProducto: string;
+  @IsNumber()
+  tipoProducto: number;
 
   @IsNotEmpty()
   @IsString()
@@ -62,8 +62,8 @@ export class ProductoUpdateDTO{
   name: string;
 
   @IsOptional()
-  @IsString()
-  tipoProducto: string;
+  @IsNumber()
+  tipoProducto: number;
 
   @IsOptional()
   @IsNumber()

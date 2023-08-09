@@ -2,6 +2,10 @@ import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-val
 
 export class HerramientaDTO{
   @IsNotEmpty()
+  @IsNumber()
+  tipoProducto: number;
+
+  @IsNotEmpty()
   @IsString()
   nombre: string;
 
@@ -11,7 +15,11 @@ export class HerramientaDTO{
 
   @IsNotEmpty()
   @IsNumber()
-  precio: number;
+  precioUnitario: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  precioDescuento: number;
 
   @IsNotEmpty()
   @IsString()
@@ -20,10 +28,6 @@ export class HerramientaDTO{
   @IsNotEmpty()
   @IsNumber()
   stock: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
 }
 
 export class HerramientaUpdateDTO{

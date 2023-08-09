@@ -2,7 +2,7 @@ import { ConfigModule } from "@nestjs/config";
 import { DataSource, DataSourceOptions  } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { ConfigService } from '@nestjs/config/dist';
-import MainSeeder from "src/database/seeds/Main.seeder";
+import MainSeeder from "../database/seeds/Main.seeder";
 import { SeederOptions } from 'typeorm-extension';
 
 ConfigModule.forRoot({envFilePath: `.${process.env.NODE_ENV}.env`});

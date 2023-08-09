@@ -1,9 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { TipoAromaCafeDTO } from 'src/modules/mantenimiento/tiposAromaCafe/dto/tipoAromaCafe.dto';
-import { TiposAromaCafeEntity } from 'src/modules/mantenimiento/tiposAromaCafe/entities/tiposAromaCafe.entity';
-import { TiposPostGustoCafeEntity } from 'src/modules/mantenimiento/tiposPostGustoCafe/entities/tiposPostGustoCafe.entity';
-import { TipoPostGustoCafeDTO } from 'src/modules/mantenimiento/tiposPostGustoCafe/dto/tipoPostGustoCafe.dto';
+import { TiposPostGustoCafeEntity } from '../../modules/mantenimiento/tiposPostGustoCafe/entities/tiposPostGustoCafe.entity';
+import { TipoPostGustoCafeDTO } from '../../modules/mantenimiento/tiposPostGustoCafe/dto/tipoPostGustoCafe.dto';
 
 export default class TipoPostGustoCafeSeeder implements Seeder {
   public async run(
@@ -11,11 +9,11 @@ export default class TipoPostGustoCafeSeeder implements Seeder {
     factoryManager: SeederFactoryManager
   ): Promise<any> {
     try {
-      const distritoRepository =  dataSource.getRepository(TiposPostGustoCafeEntity);
+      const gustoRepository =  dataSource.getRepository(TiposPostGustoCafeEntity);
       const data : TipoPostGustoCafeDTO []= [
         {
-          nombre: 'Frutal',
-          descripcion: 'sutil',
+          nombre: 'Dulce',
+          descripcion: 'dulce',
           valor: 1
         },
       ];
@@ -23,16 +21,16 @@ export default class TipoPostGustoCafeSeeder implements Seeder {
       const dataToInsert = [];
 
       for (const element of data) {
-        const notaExists = await distritoRepository.findOneBy({ nombre: element.nombre });
+        const notaExists = await gustoRepository.findOneBy({ nombre: element.nombre });
         if (!notaExists) {
           dataToInsert.push(element);
         }
       }
       
-      await distritoRepository.insert(dataToInsert);
-      console.log("Aromas de cafe insertados correctamente");
+      await gustoRepository.insert(dataToInsert);
+      console.log("Gustos de cafe insertados correctamente");
     } catch (error) {
-      console.error('Error en el TipoAromaCafeSeeder:', error);
+      console.error('Error en el TipoPostGustoCafeSeeder:', error);
     }
   }
 }

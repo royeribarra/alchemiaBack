@@ -1,7 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { DistritoDTO } from 'src/modules/mantenimiento/distritos/dto/distrito.dto';
-import { DistritosEntity } from 'src/modules/mantenimiento/distritos/entities/distritos.entity';
+import { DistritoDTO } from '../../modules/mantenimiento/distritos/dto/distrito.dto';
+import { DistritosEntity } from '../../modules/mantenimiento/distritos/entities/distritos.entity';
 
 export default class DistritoSeeder implements Seeder {
   public async run(
@@ -44,32 +44,32 @@ export default class DistritoSeeder implements Seeder {
         {
           nombre: 'La Molina',
           codigo: 'MOL',
-          tarifa: 10.00
+          tarifa: 15.00
         },
         {
           nombre: 'Pueblo Libre',
           codigo: 'PB LBR',
-          tarifa: 10.00
+          tarifa: 15.00
         },
         {
           nombre: 'Barranco',
           codigo: 'BARR',
-          tarifa: 10.00
+          tarifa: 15.00
         },
         {
           nombre: 'Jesús María',
           codigo: 'JS MR',
-          tarifa: 10.00
+          tarifa: 15.00
         },
         {
           nombre: 'Magdalena',
           codigo: 'MAGD',
-          tarifa: 10.00
+          tarifa: 15.00
         },
         {
           nombre: 'Surquillo',
           codigo: 'SURQ',
-          tarifa: 10.00
+          tarifa: 15.00
         },
       ];
 

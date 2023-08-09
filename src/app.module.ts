@@ -4,7 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DataSourceConfig } from './config/data.source';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 import { ProjectsModule } from '../src/modules/projects/projects.module';
 import { UsersModule } from '../src/modules/mantenimiento/users/users.module';
@@ -30,16 +31,21 @@ import { TiposPostGustoCafeoModule } from './modules/mantenimiento/tiposPostGust
       envFilePath: `.${process.env.NODE_ENV}.env`,
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot({...DataSourceConfig}), 
-    ProjectsModule, 
-    UsersModule, 
-    TiposMolidoModule, 
-    TiposTuesteModule, 
+    TypeOrmModule.forRoot({...DataSourceConfig}),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/',
+      exclude: ['/api/(.*)'],
+    }),
+    ProjectsModule,
+    UsersModule,
+    TiposMolidoModule,
+    TiposTuesteModule,
     TiposRarezaCafeModule,
-    PedidosModule, 
-    DetallesPedidoModule, 
-    ClientesModule, 
-    ProductosModule, 
+    PedidosModule,
+    DetallesPedidoModule,
+    ClientesModule,
+    ProductosModule,
     HerramientasModule,
     PayUModule,
     DistritosModule,

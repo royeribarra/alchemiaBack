@@ -1,15 +1,27 @@
-import { Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res} from '@nestjs/common';
 import { ProductosService } from '../services/productos.service';
 import { ProductoDTO, ProductoToRarezaDTO, ProductoUpdateDTO } from '../dto/producto.dto';
 import { Delete } from '@nestjs/common/decorators';
+import { Response } from 'express';
 
 @Controller('productos')
 export class ProductosController {
   constructor(private readonly productosService: ProductosService) {}
 
   @Post('create')
-  public async registerProducto(@Body() producto:ProductoDTO){
-    return await this.productosService.createProducto(producto);
+  public async registerProducto(@Body() producto:ProductoDTO, @Res() response: Response){
+    const newProducto = await this.productosService.createProducto(producto);
+    if(newProducto){
+      return response.json({
+        message: 'Producto creado correctamente.',
+        state: true
+      });
+    }
+
+    return response.json({
+      message: 'Error al crear producto.',
+      state: false
+    });
   }
 
   @Post('add-to-rareza')

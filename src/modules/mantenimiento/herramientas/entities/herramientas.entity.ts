@@ -3,22 +3,25 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { IHerramienta } from '../../../../../src/interfaces/herramienta.interface';
 
 @Entity({name:'herramientas'})
-export class HerramientasEntity extends BaseEntity implements IHerramienta{
+export class HerramientasEntity extends BaseEntity implements IHerramienta
+{
+  @Column({default: 2})
+  tipoProducto: number;
 
-  @Column()
+  @Column({ unique: true })
   nombre: string;
 
   @Column({ nullable: true })
   descripcion: string;
 
   @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
-  precio: number;
+  precioUnitario: number;
 
-  @Column()
+  @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})
+  precioDescuento: number;
+
+  @Column({ nullable: true })
   imagen: string;
-
-  @Column()
-  valor: number;
 
   @Column()
   stock: number;

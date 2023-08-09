@@ -1,9 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { TipoAromaCafeDTO } from 'src/modules/mantenimiento/tiposAromaCafe/dto/tipoAromaCafe.dto';
-import { TiposAromaCafeEntity } from 'src/modules/mantenimiento/tiposAromaCafe/entities/tiposAromaCafe.entity';
-import { TiposMolidoEntity } from 'src/modules/mantenimiento/tiposMolidoCafe/entities/tiposMolido.entity';
-import { TipoMolidoDTO } from 'src/modules/mantenimiento/tiposMolidoCafe/dto/tipoMolido.dto';
+import { TiposMolidoEntity } from '../../modules/mantenimiento/tiposMolidoCafe/entities/tiposMolido.entity';
+import { TipoMolidoDTO } from '../../modules/mantenimiento/tiposMolidoCafe/dto/tipoMolido.dto';
 
 export default class TipoMolidoCafeSeeder implements Seeder {
   public async run(
@@ -11,28 +9,53 @@ export default class TipoMolidoCafeSeeder implements Seeder {
     factoryManager: SeederFactoryManager
   ): Promise<any> {
     try {
-      const distritoRepository =  dataSource.getRepository(TiposMolidoEntity);
+      const molidoRepository =  dataSource.getRepository(TiposMolidoEntity);
       const data : TipoMolidoDTO []= [
         {
-          nombre: 'Frutal',
-          descripcion: 'sutil',
+          nombre: 'Grano',
+          descripcion: 'grano',
+          valor: 0
+        },
+        {
+          nombre: 'Fino',
+          descripcion: 'fino',
           valor: 1
+        },
+        {
+          nombre: 'Medio fino',
+          descripcion: 'medio fino',
+          valor: 2
+        },
+        {
+          nombre: 'Medio',
+          descripcion: 'medio',
+          valor: 3
+        },
+        {
+          nombre: 'Medio grueso',
+          descripcion: 'medio grueso',
+          valor: 4
+        },
+        {
+          nombre: 'Grueso',
+          descripcion: 'grueso',
+          valor: 5
         },
       ];
 
       const dataToInsert = [];
 
       for (const element of data) {
-        const notaExists = await distritoRepository.findOneBy({ nombre: element.nombre });
-        if (!notaExists) {
+        const molidoExists = await molidoRepository.findOneBy({ nombre: element.nombre });
+        if (!molidoExists) {
           dataToInsert.push(element);
         }
       }
       
-      await distritoRepository.insert(dataToInsert);
-      console.log("Aromas de cafe insertados correctamente");
+      await molidoRepository.insert(dataToInsert);
+      console.log("Molido de cafe insertados correctamente");
     } catch (error) {
-      console.error('Error en el TipoAromaCafeSeeder:', error);
+      console.error('Error en el TipoMolidoCafeSeeder:', error);
     }
   }
 }

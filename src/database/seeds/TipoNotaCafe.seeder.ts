@@ -1,7 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { TipoNotaCafeDTO } from 'src/modules/mantenimiento/tiposNotaCafe/dto/tipoNotaCafe.dto';
-import { TiposNotaCafeEntity } from 'src/modules/mantenimiento/tiposNotaCafe/entities/tiposNotaCafe.entity';
+import { TipoNotaCafeDTO } from '../../modules/mantenimiento/tiposNotaCafe/dto/tipoNotaCafe.dto';
+import { TiposNotaCafeEntity } from '../../modules/mantenimiento/tiposNotaCafe/entities/tiposNotaCafe.entity';
 
 export default class TipoNotaCafeSeeder implements Seeder {
   public async run(
@@ -9,7 +9,7 @@ export default class TipoNotaCafeSeeder implements Seeder {
     factoryManager: SeederFactoryManager
   ): Promise<any> {
     try {
-      const distritoRepository =  dataSource.getRepository(TiposNotaCafeEntity);
+      const notaRepository =  dataSource.getRepository(TiposNotaCafeEntity);
       const data : TipoNotaCafeDTO []= [
         {
           nombre: 'Menta',
@@ -31,13 +31,13 @@ export default class TipoNotaCafeSeeder implements Seeder {
       const dataToInsert = [];
 
       for (const element of data) {
-        const notaExists = await distritoRepository.findOneBy({ nombre: element.nombre });
+        const notaExists = await notaRepository.findOneBy({ nombre: element.nombre });
         if (!notaExists) {
           dataToInsert.push(element);
         }
       }
       
-      await distritoRepository.insert(dataToInsert);
+      await notaRepository.insert(dataToInsert);
       console.log("Notas de cafe insertados correctamente");
     } catch (error) {
       console.error('Error en el TipoNotaCafeSeeder:', error);

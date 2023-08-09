@@ -1,5 +1,4 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ROLES } from 'src/constants/roles';
 
 export class DetallePedidoDTO{
   @IsNotEmpty()
@@ -29,10 +28,6 @@ export class DetallePedidoDTO{
   @IsNotEmpty()
   @IsNumber()
   total: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  isActive: boolean;
 }
 
 export class DetallePedidoUpdatedDTO{

@@ -1,9 +1,10 @@
 export interface IHerramienta{
+  tipoProducto: number,
   nombre: string,
   descripcion: string,
-  precio: number,
+  precioUnitario: number,
+  precioDescuento: number,
   imagen: string,
-  valor: number,
   stock: number,
   isActive: boolean
 }

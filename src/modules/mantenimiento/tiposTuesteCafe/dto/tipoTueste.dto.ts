@@ -9,6 +9,10 @@ export class TipoTuesteDTO{
   @IsNotEmpty()
   @IsNumber()
   valor: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  orden: number;
 }
 
 export class TipoTuesteUpdatedDTO{

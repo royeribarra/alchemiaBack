@@ -36,15 +36,8 @@ export class ProductosService{
   public async findProductos(): Promise<ProductosEntity[]>
   {
     try {
-      const users : ProductosEntity[] = await this.productoRespository.find();
-      if(users.length === 0)
-      {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'No se encontró ningun usuario.'
-        });
-      }
-      return users;
+      const productos : ProductosEntity[] = await this.productoRespository.find();
+      return productos;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }

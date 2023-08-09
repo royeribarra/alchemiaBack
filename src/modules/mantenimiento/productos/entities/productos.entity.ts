@@ -10,31 +10,31 @@ import { ProductosTiposPostGustoCafeEntity } from './productosTiposPostGustoCafe
 
 @Entity({name:'productos'})
 export class ProductosEntity extends BaseEntity implements IProducto{
-  @Column()
-  tipoProducto: string;
+  @Column({default: 1})
+  tipoProducto: number;
 
   @Column()
   nombre: string;
 
-  @Column()
+  @Column({nullable: true})
   descripcion: string;
 
-  @Column()
+  @Column({nullable: true})
   empaque: string;
 
-  @Column()
+  @Column({nullable: true})
   puntaje: number;
 
   @Column({ nullable: true})
   origen: string;
 
-  @Column()
+  @Column({nullable: true})
   altura: string;
 
-  @Column()
+  @Column({nullable: true})
   variedad: string;
 
-  @Column()
+  @Column({nullable: true})
   proceso: string;
 
   @Column({type: 'decimal', precision: 10, scale: 2, default: 0.00})

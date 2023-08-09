@@ -1,7 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { TipoAromaCafeDTO } from 'src/modules/mantenimiento/tiposAromaCafe/dto/tipoAromaCafe.dto';
-import { TiposAromaCafeEntity } from 'src/modules/mantenimiento/tiposAromaCafe/entities/tiposAromaCafe.entity';
+import { TipoAromaCafeDTO } from '../../modules/mantenimiento/tiposAromaCafe/dto/tipoAromaCafe.dto';
+import { TiposAromaCafeEntity } from '../../modules/mantenimiento/tiposAromaCafe/entities/tiposAromaCafe.entity';
 
 export default class TipoAromaCafeSeeder implements Seeder {
   public async run(
@@ -9,7 +9,7 @@ export default class TipoAromaCafeSeeder implements Seeder {
     factoryManager: SeederFactoryManager
   ): Promise<any> {
     try {
-      const distritoRepository =  dataSource.getRepository(TiposAromaCafeEntity);
+      const aromaRepository =  dataSource.getRepository(TiposAromaCafeEntity);
       const data : TipoAromaCafeDTO []= [
         {
           nombre: 'Frutal',
@@ -21,13 +21,13 @@ export default class TipoAromaCafeSeeder implements Seeder {
       const dataToInsert = [];
 
       for (const element of data) {
-        const notaExists = await distritoRepository.findOneBy({ nombre: element.nombre });
-        if (!notaExists) {
+        const aromaExists = await aromaRepository.findOneBy({ nombre: element.nombre });
+        if (!aromaExists) {
           dataToInsert.push(element);
         }
       }
       
-      await distritoRepository.insert(dataToInsert);
+      await aromaRepository.insert(dataToInsert);
       console.log("Aromas de cafe insertados correctamente");
     } catch (error) {
       console.error('Error en el TipoAromaCafeSeeder:', error);
