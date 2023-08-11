@@ -10,6 +10,7 @@ import TipoMolidoCafeSeeder from './TipoMolidoCafe.seeder';
 import TipoNotaCafeSeeder from './TipoNotaCafe.seeder';
 import TipoPostGustoCafeSeeder from './TipoPostGusto.seeder';
 import TipoTuesteCafeSeeder from './TipoTuesteCafe.seeder';
+import TipoVariedadCafeSeeder from './TiposVariedadCafe.seeder';
 
 export default class MainSeeder implements Seeder {
   public async run(
@@ -27,5 +28,7 @@ export default class MainSeeder implements Seeder {
     await runSeeder(dataSource, TipoNotaCafeSeeder);
     await runSeeder(dataSource, TipoPostGustoCafeSeeder);
     await runSeeder(dataSource, TipoTuesteCafeSeeder);
+    await runSeeder(dataSource, TipoVariedadCafeSeeder);
+    
   }
 }

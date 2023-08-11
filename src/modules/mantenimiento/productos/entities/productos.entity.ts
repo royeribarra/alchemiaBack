@@ -13,8 +13,11 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @Column({default: 1})
   tipoProducto: number;
 
-  @Column()
+  @Column({unique: true})
   nombre: string;
+
+  @Column({nullable: true})
+  notas: string;
 
   @Column({nullable: true})
   descripcion: string;
@@ -64,9 +67,9 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @JoinTable()
   cuerpos: ProductosTiposCuerpoCafeEntity[];
 
-  @OneToMany(() => ProductosTiposNotaCafeEntity, nota => nota.producto)
-  @JoinTable()
-  notas: ProductosTiposNotaCafeEntity[];
+  // @OneToMany(() => ProductosTiposNotaCafeEntity, nota => nota.producto)
+  // @JoinTable()
+  // notas: ProductosTiposNotaCafeEntity[];
 
   @OneToMany(() => ProductosTiposAcidesCafeEntity, acidez => acidez.producto)
   @JoinTable()

@@ -13,7 +13,14 @@ export class HerramientasController {
   @UseInterceptors(FileInterceptor('file'))
   public async registerHerramienta(@UploadedFile() file, @Body() body:HerramientaDTO, @Res() response: Response)
   {
-    console.log(file)
+    if(!file)
+    {
+      return response.json({
+        message: 'Por favor seleccione una imagen.',
+        state: true
+      });
+    }
+    
     const newBody = {
       ...body,
       imagen: '/public/imagenes/herramientas/' + file.filename

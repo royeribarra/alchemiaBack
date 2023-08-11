@@ -3,15 +3,11 @@ import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-val
 export class TipoVariedadDTO{
   @IsNotEmpty()
   @IsString()
-  name: string;
+  nombre: string;
 
   @IsNotEmpty()
   @IsNumber()
-  value: number;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
+  valor: number;
 }
 
 export class TipoVariedaUpdatedDTO{

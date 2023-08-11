@@ -13,6 +13,10 @@ export class ProductoDTO{
 
   @IsNotEmpty()
   @IsString()
+  notas: string;
+
+  @IsNotEmpty()
+  @IsString()
   descripcion: string;
 
   @IsNotEmpty()

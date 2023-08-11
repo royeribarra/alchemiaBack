@@ -23,7 +23,7 @@ export class HerramientasEntity extends BaseEntity implements IHerramienta
   @Column({ nullable: true })
   imagen: string;
 
-  @Column()
+  @Column({ default: 0 })
   stock: number;
 
   @Column({default: 1})

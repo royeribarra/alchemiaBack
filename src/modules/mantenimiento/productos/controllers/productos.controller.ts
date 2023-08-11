@@ -1,16 +1,32 @@
-import { Body, Controller, Get, Param, Post, Put, Res} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res, UseInterceptors, UploadedFile} from '@nestjs/common';
 import { ProductosService } from '../services/productos.service';
 import { ProductoDTO, ProductoToRarezaDTO, ProductoUpdateDTO } from '../dto/producto.dto';
 import { Delete } from '@nestjs/common/decorators';
 import { Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('productos')
 export class ProductosController {
   constructor(private readonly productosService: ProductosService) {}
 
   @Post('create')
-  public async registerProducto(@Body() producto:ProductoDTO, @Res() response: Response){
-    const newProducto = await this.productosService.createProducto(producto);
+  @UseInterceptors(FileInterceptor('file'))
+  public async registerProducto(@UploadedFile() file, @Body() producto:ProductoDTO, @Res() response: Response)
+  {
+    if(!file)
+    {
+      return response.json({
+        message: 'Por favor seleccione una imagen.',
+        state: true
+      });
+    }
+
+    const newBody = {
+      ...producto,
+      imagen: '/public/imagenes/productos/' + file.filename
+    }
+
+    const newProducto = await this.productosService.createProducto(newBody);
     if(newProducto){
       return response.json({
         message: 'Producto creado correctamente.',

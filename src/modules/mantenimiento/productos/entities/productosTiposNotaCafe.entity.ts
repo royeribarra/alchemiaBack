@@ -6,8 +6,8 @@ import { TiposNotaCafeEntity } from '../../tiposNotaCafe/entities/tiposNotaCafe.
 @Entity({ name: 'productos_tipos_nota_cafe' })
 export class ProductosTiposNotaCafeEntity extends BaseEntity {
 
-  @ManyToOne(()=> ProductosEntity, (producto)=> producto.notas)
-  producto: ProductosEntity;
+  // @ManyToOne(()=> ProductosEntity, (producto)=> producto.notas)
+  // producto: ProductosEntity;
 
   @ManyToOne(() => TiposNotaCafeEntity, (nota)=> nota.productos)
   nota: TiposNotaCafeEntity;

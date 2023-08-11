@@ -24,7 +24,8 @@ export default class ProductoSeeder implements Seeder {
           precioUnitario: 50.00,
           precioDescuento: 45.00,
           imagen: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61jELtceuYL.jpg',
-          stock: 10
+          stock: 10,
+          notas: '[{"value":"nota  1"},{"value":"nota2"}]'
         },
         {
           tipoProducto: 1,
@@ -39,7 +40,8 @@ export default class ProductoSeeder implements Seeder {
           precioUnitario: 200.00,
           precioDescuento: 160.00,
           imagen: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61jELtceuYL.jpg',
-          stock: 10
+          stock: 10,
+          notas: '[{"value":"nota  1"},{"value":"nota2"}]'
         },
         {
           tipoProducto: 1,
@@ -54,7 +56,8 @@ export default class ProductoSeeder implements Seeder {
           precioUnitario: 18.00,
           precioDescuento: 15.00,
           imagen: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61jELtceuYL.jpg',
-          stock: 10
+          stock: 10,
+          notas: '[{"value":"nota  1"},{"value":"nota2"}]'
         },
         {
           tipoProducto: 1,
@@ -69,7 +72,8 @@ export default class ProductoSeeder implements Seeder {
           precioUnitario: 12.00,
           precioDescuento: 10.00,
           imagen: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61jELtceuYL.jpg',
-          stock: 10
+          stock: 10,
+          notas: '[{"value":"nota  1"},{"value":"nota2"}]'
         },
       ];
 
