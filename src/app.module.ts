@@ -7,7 +7,6 @@ import { DataSourceConfig } from './config/data.source';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
-import { ProjectsModule } from '../src/modules/projects/projects.module';
 import { UsersModule } from '../src/modules/mantenimiento/users/users.module';
 import { TiposMolidoModule } from '../src/modules/mantenimiento/tiposMolidoCafe/tipos-molido.module';
 import { TiposTuesteModule } from '../src/modules/mantenimiento/tiposTuesteCafe/tipos-tueste.module';
@@ -37,7 +36,6 @@ import { TiposPostGustoCafeoModule } from './modules/mantenimiento/tiposPostGust
       serveRoot: '/',
       exclude: ['/api/(.*)'],
     }),
-    ProjectsModule,
     UsersModule,
     TiposMolidoModule,
     TiposTuesteModule,
