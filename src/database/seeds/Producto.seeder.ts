@@ -80,7 +80,7 @@ export default class ProductoSeeder implements Seeder {
       const dataToInsert = [];
 
       for (const element of data) {
-        const productoExists = await productoRepository.findOneBy({ nombre: element.nombre, tipoProducto: element.tipoProducto });
+        const productoExists = await productoRepository.findOneBy({ nombre: element.nombre, empaque: element.empaque });
         if (!productoExists) {
           dataToInsert.push(element);
         }

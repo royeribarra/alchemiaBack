@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../../config/base.entity';
-import { Column, Entity, JoinTable, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, OneToMany, Unique } from 'typeorm';
 import { IProducto } from '../../../../interfaces/producto.interface';
 import { ProductosTiposRarezaCafeEntity } from './productosTiposRarezaCafe.entity';
 import { ProductosTiposAromaCafeEntity } from './productosTiposAromaCafe.entity';
@@ -9,11 +9,12 @@ import { ProductosTiposAcidesCafeEntity } from './productosTiposAcidesCafe.entit
 import { ProductosTiposPostGustoCafeEntity } from './productosTiposPostGustoCafe.entity';
 
 @Entity({name:'productos'})
+@Unique(['nombre', 'empaque'])
 export class ProductosEntity extends BaseEntity implements IProducto{
   @Column({default: 1})
   tipoProducto: number;
 
-  @Column({unique: true})
+  @Column()
   nombre: string;
 
   @Column({nullable: true})
@@ -22,7 +23,7 @@ export class ProductosEntity extends BaseEntity implements IProducto{
   @Column({nullable: true})
   descripcion: string;
 
-  @Column({nullable: true})
+  @Column()
   empaque: string;
 
   @Column({nullable: true})
