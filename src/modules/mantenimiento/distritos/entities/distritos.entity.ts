@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity } from 'typeorm';
-import { IDistrito } from 'src/interfaces/distrito.interface';
+import { IDistrito } from '../../../../interfaces/distrito.interface';
 
 @Entity({name:'distritos'})
 export class DistritosEntity extends BaseEntity implements IDistrito{

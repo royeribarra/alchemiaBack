@@ -1,5 +1,4 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString } from 'class-validator';
-import { ROLES } from 'src/constants/roles';
 
 export class UserDTO{
   @IsNotEmpty()
@@ -25,9 +24,6 @@ export class UserDTO{
   @IsNotEmpty()
   @IsString()
   password: string;
-
-  @IsNotEmpty()
-  role: ROLES;
 }
 
 export class UserUpdateDTO{
@@ -54,7 +50,4 @@ export class UserUpdateDTO{
   @IsOptional()
   @IsString()
   password: string;
-
-  @IsOptional()
-  role: ROLES;
 }

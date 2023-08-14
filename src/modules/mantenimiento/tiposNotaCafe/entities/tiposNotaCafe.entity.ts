@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { ITipoNota } from 'src/interfaces/tipoNotaCafe.interface';
+import { ITipoNota } from '../../../../interfaces/tipoNotaCafe.interface';
 import { ProductosTiposNotaCafeEntity } from '../../productos/entities/productosTiposNotaCafe.entity';
 
 @Entity({name:'tiposNotaCafe'})

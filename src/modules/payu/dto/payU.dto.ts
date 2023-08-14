@@ -1,7 +1,6 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ICliente } from 'src/interfaces/cliente.interface';
-import { IPayU, IPayUTarjeta } from 'src/interfaces/payU.interface';
-import { IPedido } from 'src/interfaces/pedido.interface';
+import { ICliente } from '../../../interfaces/cliente.interface';
+import { IPayU, IPayUTarjeta } from '../../../interfaces/payU.interface';
 
 export class PayUDTO{
   @IsNotEmpty()

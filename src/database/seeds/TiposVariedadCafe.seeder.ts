@@ -1,7 +1,7 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { TiposRarezaCafeEntity } from '../../modules/mantenimiento/tiposRarezaCafe/entities/tiposRarezaCafe.entity';
-import { TipoVariedadDTO } from 'src/modules/mantenimiento/tiposRarezaCafe/dto/tipoRarezaCafe.dto';
+import { TipoVariedadDTO } from '../../modules/mantenimiento/tiposRarezaCafe/dto/tipoRarezaCafe.dto';
 
 export default class TipoVariedadCafeSeeder implements Seeder {
   public async run(

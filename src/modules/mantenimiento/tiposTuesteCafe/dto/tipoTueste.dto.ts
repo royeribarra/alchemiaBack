@@ -1,5 +1,4 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ROLES } from 'src/constants/roles';
 
 export class TipoTuesteDTO{
   @IsNotEmpty()
@@ -27,7 +26,4 @@ export class TipoTuesteUpdatedDTO{
   @IsOptional()
   @IsBoolean()
   isActive: boolean;
-
-  @IsOptional()
-  role: ROLES;
 }

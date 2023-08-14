@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { ITipoCuerpo } from 'src/interfaces/tipoCuerpoCafe.interface';
+import { ITipoCuerpo } from '../../../../interfaces/tipoCuerpoCafe.interface';
 import { ProductosTiposCuerpoCafeEntity } from '../../productos/entities/productosTiposCuerpoCafe.entity';
 
 @Entity({name:'tiposCuerpoCafe'})

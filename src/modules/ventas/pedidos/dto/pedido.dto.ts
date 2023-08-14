@@ -1,6 +1,6 @@
 import { IsNumber, IsOptional, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ICliente } from 'src/interfaces/cliente.interface';
-import { IDetallePedido } from 'src/interfaces/detallePedido.interface';
+import { ICliente } from '../../../../interfaces/cliente.interface';
+import { IDetallePedido } from '../../../../interfaces/detallePedido.interface';
 
 export class PedidoDTO{
   @IsOptional()

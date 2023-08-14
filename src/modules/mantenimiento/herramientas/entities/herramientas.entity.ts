@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../../config/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { IHerramienta } from '../../../../../src/interfaces/herramienta.interface';
+import { IHerramienta } from '../../../../interfaces/herramienta.interface';
 
 @Entity({name:'herramientas'})
 export class HerramientasEntity extends BaseEntity implements IHerramienta

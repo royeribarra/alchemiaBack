@@ -1,4 +1,4 @@
-import { ITipoAcides } from 'src/interfaces/tipoAcidesCafe.interface';
+import { ITipoAcides } from '../../../../interfaces/tipoAcidesCafe.interface';
 import { BaseEntity } from '../../../../config/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 import { ProductosTiposAcidesCafeEntity } from '../../productos/entities/productosTiposAcidesCafe.entity';

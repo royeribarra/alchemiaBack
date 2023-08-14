@@ -1,8 +1,7 @@
 import { ConfigService } from '@nestjs/config/dist';
 import * as crypto from 'crypto';
-import { ICliente } from 'src/interfaces/cliente.interface';
-import { IPayU, IPayUTarjeta } from 'src/interfaces/payU.interface';
-import { IPedido } from 'src/interfaces/pedido.interface';
+import { ICliente } from '../../../interfaces/cliente.interface';
+import { IPayU, IPayUTarjeta } from '../../../interfaces/payU.interface';
 import { PayUTransactionDTO } from '../dto/payUTransaction.dto';
 const configService = new ConfigService();
 
